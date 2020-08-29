@@ -1,0 +1,22 @@
+extends ./pug/extends/base.pug
+
+block headVar
+  - var title = "Биологическая нейросеть за работой"
+block headCss
+  //- Here write link files css
+
+block body
+  header.header
+    nav.menu
+      ul
+        li.menu__item
+          a(href="./pages/Card.html") Card
+        li.menu__item
+          a(href="./pages/Colors&Type.html") Colors&Type
+        li.menu__item
+          a(href="./pages/FormElements.html") FormElements
+        li.menu__item
+          a(href="./pages/Headers&Footers.html") Headers&Footers
+
+block scripts
+  //- Here write script files js
