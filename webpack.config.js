@@ -78,10 +78,6 @@ const jsLoaders = () => {
 
 const plugins = () => {
   const base = [
-    ...PAGES.map(page => new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
-      filename: `./${page.replace(/\.pug/,'.html')}`
-    })),
     new HTMLWebpackPlugin({
       template: './index.pug',
       filename: './index.html',
@@ -91,6 +87,15 @@ const plugins = () => {
         removeComments: isProd
       }
     }),
+    ...PAGES.map(page => new HTMLWebpackPlugin({
+      template: `${PAGES_DIR}/${page}`,
+      filename: `pages/${page.replace(/\.pug/,'.html')}`,
+      inject: true,
+      minify: {
+        collapseWhitespace: isProd,
+        removeComments: isProd
+      }
+    })),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: fileName('style', 'css'),
@@ -121,30 +126,7 @@ module.exports = {
     hot: isDev,
   },
   devtool: isDev ? 'source-map' : '',
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: './index.pug',
-      filename: './index.html',
-      inject: true,
-      minify: {
-        collapseWhitespace: isProd,
-        removeComments: isProd
-      }
-    }),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: fileName('style', 'css'),
-    }),
-    ...PAGES.map(page => new HTMLWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
-      filename: `pages/${page.replace(/\.pug/,'.html')}`,
-      inject: true,
-      minify: {
-        collapseWhitespace: isProd,
-        removeComments: isProd
-      }
-    })),
-  ],
+  plugins: plugins(),
   module: {
     rules: [
       {
