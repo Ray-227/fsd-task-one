@@ -7,7 +7,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
-const isProd = !isDev;
+const isProd = process.env.NODE_ENV === 'production';
 
 const PAGES_DIR = path.resolve(__dirname, 'src/pug/pages/UiKit');
 const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'));
@@ -91,10 +91,7 @@ const plugins = () => {
       template: `${PAGES_DIR}/${page}`,
       filename: `pages/${page.replace(/\.pug/,'.html')}`,
       inject: true,
-      minify: {
-        collapseWhitespace: isProd,
-        removeComments: isProd
-      }
+      minify: isProd
     })),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({

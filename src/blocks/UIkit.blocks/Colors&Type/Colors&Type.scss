@@ -1,1 +1,32 @@
-.CT-h1 {color: red;}
+.palette {
+
+}
+.palette_item {
+  display: flex;
+}
+.palette_color {
+  background: #000;
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+}
+
+.palette_color__Dark100 { background: #1F2041; }
+.palette_color__Dark75 { background: rgba(31, 32, 65, 0.75); }
+.palette_color__Dark50 { background: rgba(31, 32, 65, 0.5); }
+.palette_color__Dark25 { background: rgba(31, 32, 65, 0.25); }
+.palette_color__Dark5 { background: rgba(31, 32, 65, 0.05); }
+.palette_color__Purple { background: #BC9CFF; }
+.palette_color__Green { background: #6FCF97; }
+
+.palette_text {
+  font-family: Quicksand, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 29px;
+}
+.palette_nameColor {
+  font-family: Montserrat, sans-serif;
+  font-weight: normal;
+}
