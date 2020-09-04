@@ -1,0 +1,26 @@
+.logo {
+  background: url("../images/logo.svg") no-repeat;
+  width: 48px;
+  height: 48px;
+  margin: 30px;
+}
+
+.menu_container {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.menu__item {
+  list-style-type: none;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.menu__link {
+  text-decoration: none;
+}
+
+.menu__link:visited {
+  color: rgb(143, 143, 160);
+}

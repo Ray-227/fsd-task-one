@@ -1,32 +1,37 @@
 .palette {
 
 }
+
 .palette_item {
   display: flex;
+  margin-bottom: 20px;
 }
+
 .palette_color {
-  background: #000;
   width: 70px;
   height: 70px;
   border-radius: 6px;
 }
 
-.palette_color__Dark100 { background: #1F2041; }
-.palette_color__Dark75 { background: rgba(31, 32, 65, 0.75); }
-.palette_color__Dark50 { background: rgba(31, 32, 65, 0.5); }
-.palette_color__Dark25 { background: rgba(31, 32, 65, 0.25); }
-.palette_color__Dark5 { background: rgba(31, 32, 65, 0.05); }
-.palette_color__Purple { background: #BC9CFF; }
-.palette_color__Green { background: #6FCF97; }
+.palette_color__Dark100 { background: $Dark100; }
+.palette_color__Dark75 { background: $Dark75; }
+.palette_color__Dark50 { background: $Dark50; }
+.palette_color__Dark25 { background: $Dark25; }
+.palette_color__Dark5 { background: $Dark5; }
+.palette_color__Purple { background: $Purple }
+.palette_color__Green { background: $Green }
 
 .palette_text {
-  font-family: Quicksand, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 30px;
+  @include QuicksandBold(20px, 30px);
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
 }
+
+.palette_title {
+  margin: 0;
+}
+
 .palette_nameColor {
-  font-family: Quicksand, sans-serif;
-  font-weight: normal;
+  @include QuicksandNormal(20px, 30px);
 }

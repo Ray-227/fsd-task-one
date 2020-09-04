@@ -6,17 +6,12 @@ block headCss
   //- Here write link files css
 
 block body
-  header.header
-    nav.menu
-      ul
-        li.menu__item
-          a(href="./pages/Card.html") Card
-        li.menu__item
-          a(href="./pages/Colors&Type.html") Colors&Type
-        li.menu__item
-          a(href="./pages/FormElements.html") FormElements
-        li.menu__item
-          a(href="./pages/Headers&Footers.html") Headers&Footers
+  include /blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.pug
+  main
+    h1 Hello h3
+    h2 Hello h2
+    h3 Hello h3
+    p.bodyText Hello body text
 
 block scripts
   //- Here write script files js

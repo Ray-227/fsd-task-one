@@ -1,8 +1,38 @@
-﻿@import "../blocks/UiKit.blocks/Colors&Type/Colors&Type.scss";
+﻿@import "varColors.scss";
+@import "../fonts/mixinFonts.scss";
 
-.row {
-  padding: 0px 15px 0px 15px;
+@import "../blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.scss";
+@import "../blocks/UIkit.blocks/Colors&Type/Colors&Type.scss";
+
+// Text
+h1 {
+  @include QuicksandBold(24px, 30px);
+  color: $Dark100;
 }
+
+h2 {
+  @include QuicksandBold(20px, 24px);
+  color: $Dark100;
+}
+
+h3 {
+  @include MontserratBold(12px, 16px);
+  text-transform: uppercase;
+  color: $Dark100;
+}
+
+.bodyText {
+  @include MontserratNormal(14px, 24px);
+  color: $Dark75;
+}
+
+// layout
+.container { margin: 0 auto; }
+.container-sm { margin: 0 auto; }
+.container-md { margin: 0 auto; }
+.container-lg { margin: 0 auto; }
+.container-xl { margin: 0 auto; }
+.container-fluid { margin: 0 auto; }
 
 // Экстрамалые девайсы («портретные телефоны», < 576px)
 @media (max-width: 575.98px) { 
@@ -52,4 +82,8 @@
   .container-lg { width: 1140px; }
   .container-xl { width: 1140px; }
   .container-fluid { width: 100%; }
+}
+
+.row {
+  padding: 0px 15px 0px 15px;
 }
