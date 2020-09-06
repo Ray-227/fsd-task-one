@@ -1,3 +1,9 @@
+.header {
+  width: 100%;
+  height: auto;
+  padding-bottom: 32px;
+}
+
 .logo {
   background: url("../images/logo.svg") no-repeat;
   width: 48px;
@@ -7,6 +13,7 @@
 
 .menu_container {
   display: flex;
+  flex-wrap: wrap;
   padding: 0;
   margin: 0;
 }
@@ -19,8 +26,9 @@
 
 .menu__link {
   text-decoration: none;
+  color: $Dark100;
 }
 
 .menu__link:visited {
-  color: rgb(143, 143, 160);
+  color: #8f8fa0;
 }
