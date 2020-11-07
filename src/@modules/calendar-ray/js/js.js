@@ -256,8 +256,8 @@
 
   }
 
-window.onload = () => {
-  /*
+if ( document.querySelector(".calendar-container") ) {
+    /*
     Вывод месяца, возможен ввод трех необязательных параметров, если оставить параметр пустым, тогда он примет текущий год/месяц/число.
     new Calendar(?year:number, ?month:number, ?date:number)
 
@@ -269,7 +269,5 @@ window.onload = () => {
   */
   let calendar = new Calendar();
 }
-
-
 
 

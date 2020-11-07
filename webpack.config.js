@@ -9,6 +9,13 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
 
+let currentMode;
+if (isDev) {
+  currentMode = 'development';
+} else {
+  currentMode = 'production';
+}
+
 const PAGES_DIR = path.resolve(__dirname, 'src/pug/pages/UiKit');
 const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'));
 
@@ -37,6 +44,7 @@ const cssLoaders = extra => {
       options: {
         hmr: isDev,
         reloadAll: true,
+        publicPath: '../'
       },
     },
     'css-loader'
@@ -104,7 +112,7 @@ const plugins = () => {
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  mode: 'development',
+  mode: currentMode,
   entry: {
     app: './js/index.js'
   },
