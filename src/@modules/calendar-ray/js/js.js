@@ -59,15 +59,15 @@
 
     drawCalendar() {
       this.drawTag("none", ".calendar-container", "calendar-container__header");
-      this.drawTag("none", ".calendar-container__header", "calendar-container__title", "h1");
+      this.drawTag("none", ".calendar-container__header", "calendar-container__title", "h2");
       this.drawTag(`${this.getNameMonth(this.currentMonth)} ${this.currentFullYear}`, ".calendar-container__title", "none", "text");
 
-      this.drawTag("<", ".calendar-container__header", "calendar-container__prev", "div", "start");
-      this.drawTag(">", ".calendar-container__header", "calendar-container__next");
+      this.drawTag("<i class='material-icons md-purple'>arrow_back</i>", ".calendar-container__header", "calendar-container__prev", "div", "start");
+      this.drawTag("<i class='material-icons md-purple'>arrow_forward</i>", ".calendar-container__header", "calendar-container__next");
       
       // Выводим название недель.
       for (let i = 1; i <= 7; i++) {
-        this.drawTag(this.getNameDay(i), ".calendar-container", ".calendar-container__day");
+        this.drawTag(this.getNameDay(i), ".calendar-container", "calendar-container__day");
       }
 
       let ValuesForCalendarTable, startTable, countDate;
@@ -79,7 +79,11 @@
         // Изменяя число *Date, меняется и месяц *Month.
         this.date.setMonth(this.currentMonth); // ? Можно сделать условие и устанавливать текущий месяц, если startTable < 0 или startTable > lastDateCurrentMonth
         this.date.setDate(startTable);
-        this.drawTag(this.date.getDate(), ".calendar-container", "calendar-container__date");
+        if(startTable === this.currentDate) {
+          this.drawTag(this.date.getDate(), ".calendar-container", "calendar-container__date calendar-container__date_currentDate");
+        } else {
+          this.drawTag(this.date.getDate(), ".calendar-container", "calendar-container__date");
+        }
       }
       
       this.drawTag("none", ".calendar-container", "calendar-container__buttons");
