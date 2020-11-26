@@ -5,9 +5,12 @@ block headVar
   - var title = "Cards"
 
 block headCss
+  //- link(rel="stylesheet", href="/blocks/UIkit.blocks/Cards/Cards.scss") в собраном проекте, другие пути, я хотел бы подгружать css и js файлы только при посещений определённой страницы
 
 block body
   include /blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.pug
   include /blocks/UIkit.blocks/Cards/Cards.pug
 
 block scripts
+  //- script(src="/@modules/calendar-ray/js/js.js")
+

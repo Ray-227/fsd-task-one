@@ -1,0 +1,15 @@
+@import "/blocks/common.blocks/select/select.scss";
+
+.numberSelection {
+  @include CardsBlock(380px, auto);
+}
+
+.select-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-css {
+  width: 150px;
+  display: inline-block;
+}
