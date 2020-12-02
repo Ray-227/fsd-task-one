@@ -1,0 +1,36 @@
+@mixin FormElementBlockDefault($width, $height) {
+  width: $width;
+  height: $height;
+
+  background: #FFFFFF;
+  border: 1px solid $Dark25;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+@mixin FormElementBlockHover($width, $height) {
+  width: $width;
+  height: $height;
+
+  background: #FFFFFF;
+  border: 1px solid $Dark50;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+@mixin FormElementToxin($width) {
+  width: $width;
+  height: 44px;
+  background: $White;
+  border: 1px solid $Dark25;
+  border-radius: 4px;
+  padding-left: 15px;
+  outline: none;
+  @include MontserratNormal(14px, 18px);
+  color: $Dark75;
+  
+  &:focus, &:hover {
+    border: 1px solid $Dark50;
+  }
+}
+

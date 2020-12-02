@@ -5,7 +5,7 @@
 
 @import "/blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.scss";
 @import "/blocks/UIkit.blocks/Colors&Type/Colors&Type.scss";
-@import "/blocks/UIkit.blocks/Cards/Cards.scss";
+@import "/blocks/UIkit.blocks/FormElements/FormElements.scss";
 
 // Text
 h1 {
@@ -27,4 +27,15 @@ h3 {
 .body-text {
   @include MontserratNormal(14px, 24px);
   color: $Dark75;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

@@ -1,0 +1,49 @@
+main
+  .container
+    .row
+      .col-4.d-flex.flex-column
+        .input-container.width-320
+          label(for="email").input-container__label
+            h3.input-container__title Text Field
+            p.input-container__info default
+          input(type="email", name="email", placeholder="Email", id="email").input-email
+        
+        .input-container.width-320
+          label().input-container__label
+            h3.input-container__title Text Field
+            p.input-container__info Hover / Focus
+          input(type="text", value="This is pretty awesome", placeholder="Enter text", autofocus).input-text
+        
+        //- DROPDOWN
+        //- У блока .dropdown, есть атрибут people (заполнение в скрипте), он обозначает сколько взрослых/детей/младенцев к заселению.
+        .input-container.width-320
+          label().input-container__label
+            h3.input-container__title Dropdown
+          .dropdown(people="")
+            .dropdown__body 
+              p.dropdown__text Сколько гостей
+              span.material-icons.dropdown__icon expand_more
+            .dropdown__options.visually-hidden
+              .dropdown__option(name="adult")
+                h3.dropdown__people Взрослые
+                .dropdown__count
+                  span.material-icons.dropdown__count-circle.dropdown__count-remove remove
+                  h3.dropdown__output 0
+                  span.material-icons.dropdown__count-circle.dropdown__count-add add
+              .dropdown__option(name="child")
+                h3.dropdown__people Дети
+                .dropdown__count
+                  span.material-icons.dropdown__count-circle.dropdown__count-remove remove
+                  h3.dropdown__output 0
+                  span.material-icons.dropdown__count-circle.dropdown__count-add add
+              .dropdown__option(name="baby")
+                h3.dropdown__people Младенцы
+                .dropdown__count
+                  span.material-icons.dropdown__count-circle.dropdown__count-remove remove
+                  h3.dropdown__output 0
+                  span.material-icons.dropdown__count-circle.dropdown__count-add add
+      
+      .col-4.d-flex.flex-column
+
+      .col-4.d-flex.flex-column
+
