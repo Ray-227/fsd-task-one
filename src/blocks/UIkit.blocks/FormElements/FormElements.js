@@ -102,7 +102,7 @@ if ( document.querySelector('.input-date-masked') ) {
 
   class MaskedDate {
     constructor() {
-      this.regExpDate = new RegExp('(0[1-9]|[1-2][0-9]|3[0-1])[.](0[1-9]|1[0-2])[.](20\\d{2})');
+      this.regExpDate = new RegExp('(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[0-2])[.](20\\d{2})');
     }
 
     is(element) {
@@ -111,6 +111,14 @@ if ( document.querySelector('.input-date-masked') ) {
 
     get(element) {
       return this.regExpDate.exec(element.value);
+    }
+
+    setJSON(element, attribute = 'date') {
+      element.setAttribute(`${attribute}`, `${JSON.stringify( this.get(element)[0] )}`);
+    }
+
+    getJSON(element, attribute = 'date') {
+      JSON.parse(element.getAttribute(`${attribute}`));
     }
   }
 
@@ -144,10 +152,15 @@ if ( document.querySelector('.input-date-masked') ) {
       }
   
       // Данная проверка показательная, чтобы просто была, данную проверку нужно делать только при отправке на сервер.
-      if(!maskedDate.is(item) && item.value.length === 10) {
+      if (!maskedDate.is(item) && item.value.length === 10) {
         item.classList.add('input_error');
       }
 
+      if ( maskedDate.is(item) ) {
+        maskedDate.setJSON(item);
+      } else if (item.value.length === 10) {
+        item.setAttribute('date', 'null');
+      }
     };
 
   });
