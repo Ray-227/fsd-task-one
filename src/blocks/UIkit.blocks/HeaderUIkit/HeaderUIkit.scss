@@ -27,8 +27,13 @@
 .menu__link {
   text-decoration: none;
   color: $Dark100;
+
+  &:visited {
+    color: $Purple;
+  }
+
+  &:hover, &:active {
+    color: $Dark75;
+  }
 }
 
-.menu__link:visited {
-  color: #8f8fa0;
-}

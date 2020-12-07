@@ -28,12 +28,20 @@
   }
 }
 
-// INPUTS
+// STYLE INPUTS
+.input_error {
+  box-shadow: 0px 0px 2px 1px red;
+}
+
 .input-email {
   @include FormElementToxin(320px);
 }
 
 .input-text {
+  @include FormElementToxin(320px);
+}
+
+.input-date-masked {
   @include FormElementToxin(320px);
 }
 
@@ -134,3 +142,5 @@
 .dropdown__count-circle:hover, .dropdown__count-circle:focus {
   border: 1px solid $Dark50;
 }
+
+// INPUT DATE MASKED
