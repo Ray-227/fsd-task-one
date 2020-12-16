@@ -24,6 +24,8 @@ if ( document.querySelector('.dropdown') ) {
     }
 
     add(target, output) {
+      document.querySelectorAll('.dropdown__submit')[0].classList.remove('dropdown__submit_hidden');
+
       let count = 0;
       for (let key in this.people) {
         count += Number(this.people[key]);
@@ -38,12 +40,26 @@ if ( document.querySelector('.dropdown') ) {
     }
 
     remove(target, output) {
-      if(this.people[target] > 0) {
+      if (this.people[target] > 0) {
         this.people[target] -= 1;
         output.innerHTML = this.people[target];
         this.output();
         this.setJSON();
       }
+    }
+
+    removeAll() {
+      for (let key in this.people) {
+        this.people[key] = Number(0);
+      }
+
+    document.querySelectorAll('.dropdown__output').forEach( (item) => {
+      item.innerHTML = 0;
+    });
+
+      document.querySelectorAll('.dropdown__submit')[0].classList.add('dropdown__submit_hidden');
+      this.output();
+      this.setJSON();
     }
 
     output() {
@@ -93,6 +109,18 @@ if ( document.querySelector('.dropdown') ) {
       dropDown.remove( e.target.offsetParent.childNodes[i].getAttribute('name'), document.querySelectorAll('.dropdown__output')[i]);
     });
   });
+
+document.querySelectorAll('.dropdown__submit').forEach( (item) => {
+  item.addEventListener('click', (e) => {
+    if (e.target.name === 'reset') {
+      dropDown.removeAll();
+    }
+
+    if (e.target.name === 'apply') {
+      dropDown.toggle();
+    }
+  });
+});
 
   document.body.addEventListener('click', function(e) {
     let target = e.target || e.srcElement;

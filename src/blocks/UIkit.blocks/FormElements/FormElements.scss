@@ -78,7 +78,7 @@
 
 .dropdown__options {
   width: calc(100% + 15px);
-  height: 160px;
+  height: auto;
 
   position: relative;
   left: -15px;
@@ -132,6 +132,38 @@
 
 .dropdown__count-circle:hover, .dropdown__count-circle:focus {
   border: 1px solid $Dark50;
+}
+
+.dropdown__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: -5px;
+}
+
+.dropdown__submit {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  
+  @include MontserratBold(12px, 14px);
+  text-transform: uppercase;
+  color: $Purple;
+  cursor: pointer;
+
+  transition: opacity ease 200ms;
+}
+
+.dropdown__submit:hover {
+  opacity: 0.5;
+}
+
+.dropdown__submit_hidden, .dropdown__submit_hidden:hover {
+  opacity: 0;
+  cursor: default;
 }
 
 // Input date masked
