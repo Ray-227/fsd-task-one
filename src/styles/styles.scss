@@ -4,6 +4,7 @@
 @import "/fonts/MaterialIcons/material-icons.scss";
 
 @import "/blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.scss";
+@import "/blocks/UIkit.blocks/Cards/Cards.scss";
 @import "/blocks/UIkit.blocks/Colors&Type/Colors&Type.scss";
 @import "/blocks/UIkit.blocks/FormElements/FormElements.scss";
 
@@ -38,4 +39,10 @@ h3 {
   padding: 0;
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.appearance-none {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }

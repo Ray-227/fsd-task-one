@@ -75,6 +75,13 @@ if ( document.querySelector('.dropdown') ) {
     dropDown.toggle();
   });
 
+  document.querySelector('.dropdown').addEventListener('keydown', function(e) {
+    if (e.code === 'Space' && e.target !== document.body) {
+      e.preventDefault();
+      dropDown.toggle();
+    }
+  });
+
   document.querySelectorAll('.dropdown__count-add').forEach( (item, i) => {
     item.addEventListener('click', (e) => {
       dropDown.add( e.target.offsetParent.childNodes[i].getAttribute('name'), document.querySelectorAll('.dropdown__output')[i]);
@@ -165,4 +172,14 @@ if ( document.querySelector('.input-date-masked') ) {
 
   });
 
+}
+
+if ( document.querySelector('.input-date-dropdown') ) {
+  let inputDateDropDown = document.querySelectorAll('.input-date-dropdown');
+
+  inputDateDropDown.forEach( (item) => {
+    item.onclick = () => {
+      console.log('dropdown');
+    };
+  });
 }

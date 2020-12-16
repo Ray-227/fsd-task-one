@@ -1,16 +1,22 @@
 main
-  .container
-    .row
-      .col-4.d-flex.flex-column
+  .container.mb-100
+    .row.flex-column.flex-lg-row
+      .col-4
         //- Email Field
-        .input-container.width-320
+        .input-container.width-320.mb-20
           label(for="email").input-container__label
             h3.input-container__title Email Field
             p.input-container__info default
           input(type="email", name="email", placeholder="Email", id="email").input-email
         
+        //- Password Field
+        .input-container.width-320.mb-20
+          label.input-container__label
+            h3.input-container__title Password Field
+          input(type="password", name="password", placeholder="Пароль" required).input-password
+        
         //- Text Field
-        .input-container.width-320
+        .input-container.width-320.mb-20
           label().input-container__label
             h3.input-container__title Text Field
             p.input-container__info Hover / Focus
@@ -18,10 +24,10 @@ main
         
         //- DROPDOWN
         //- У блока .dropdown, есть атрибут people (генерируется js), он обозначает сколько взрослых/детей/младенцев к заселению.
-        .input-container.width-320
+        .input-container.width-320.mb-20
           label().input-container__label
             h3.input-container__title Dropdown
-          .dropdown(people="")
+          .dropdown(people="", tabindex="0")
             .dropdown__body 
               p.dropdown__text Сколько гостей
               span.material-icons.dropdown__icon expand_more
@@ -45,12 +51,144 @@ main
                   h3.dropdown__output 0
                   span.material-icons.dropdown__count-circle.dropdown__count-add add
 
-        //- Masked Text Field
-        .input-container.width-320
+        //- Masked Date Field
+        .input-container.width-320.mb-40
           label().input-container__label
-            h3.input-container__title Masked Text Field
+            h3.input-container__title Masked Date Field
           input(type="text", placeholder="ДД.ММ.ГГГГ").input-date-masked
-      .col-4.d-flex.flex-column
 
-      .col-4.d-flex.flex-column
+        //- Date dropdown
+        .input-container-date-dropdown.width-320.mb-40
+          .input-container.width-150
+            label.input-container__label
+              h3.input-container__title date Dropdown
+            .input-date-dropdown
+              input(type="text", placeholder="ДД.ММ.ГГГГ").input-date-masked.width-full
+              span.material-icons.input-date-dropdown__icon expand_more
+          .input-container.width-150
+            label.input-container__label
+              h3.input-container__title date Dropdown
+            .input-date-dropdown
+              input(type="text", placeholder="ДД.ММ.ГГГГ").input-date-masked.width-full
+              span.material-icons.input-date-dropdown__icon expand_more
 
+        //- filter date dropdown
+        .input-container.width-260.mb-40
+          label.input-container__label
+            h3.input-container__title filter date dropdown
+          .filter-date-dropdown(tabindex="0")
+            .filter-date-dropdown__body
+              p.filter-date-dropdown__text Период пробывания
+              span.material-icons.filter-date-dropdown__icon expand_more
+
+        //- subscription email form
+        .input-container.width-260
+          label.input-container__label
+            h3.input-container__title subscription email form
+          form(action="" method="post" enctype="text/plain").subscription
+            input(type="email", name="email", placeholder="Email", id="email").input-email.width-260          
+            input(type="submit" value="").subscription__submit
+            .material-icons.md-purple.subscription__icon arrow_forward
+      .col-4.mt-md-4.mt-lg-0
+        //- Checkbox Buttons
+        .input-container.width-220.mb-40
+          label.input-container__label
+            h3.input-container__title.mb-15 Checkbox Buttons
+          fieldset.checkbox__fieldset
+            label.checkbox__label
+              input(type="checkbox", name="smoke").checkbox__input
+              .checkbox__box
+              .checkbox__text Можно курить
+            label.checkbox__label
+              input(type="checkbox", name="pet").checkbox__input
+              .checkbox__box
+              .checkbox__text Можно с питомцами
+            label.checkbox__label
+              input(type="checkbox", name="guests").checkbox__input
+              .checkbox__box
+              .checkbox__text Можно пригласить гостей (до 10 человек)
+
+        //- Radio Buttons
+        .input-container.width-220.mb-40
+          label.input-container__label
+            h3.input-container__title.mb-15 Radio Buttons
+          fieldset.radio__fieldset
+            label.radio__label
+              input(type="radio", name="gender", checked).radio__input
+              .radio__point
+              .radio__text Мужчина
+            label.radio__label
+              input(type="radio", name="gender").radio__input
+              .radio__point
+              .radio__text Женщина
+
+        //- Toggle
+        .input-container.width-220.mb-40
+          label.input-container__label
+            h3.input-container__title.mb-15 Toggle
+          label.toggle__label.mb-15
+            input(type="checkbox", name="offers-demo").toggle__input
+            .toggle__point
+            .toggle__text Получать спецпредложения
+          label.toggle__label
+            input(type="checkbox", name="offers", checked).toggle__input
+            .toggle__point
+            .toggle__text Получать спецпредложения
+
+        //- Like button
+        .input-container.width-90.mb-40
+          label.input-container__label
+            h3.input-container__title.mb-15 like button
+          .like-demo-contaner
+            label.like__label
+              input(type="checkbox", name="like_demo").like__input
+              .like__heart
+                .like__count 2
+            label.like__label
+              input(type="checkbox", name="like", checked).like__input
+              .like__heart
+                .like__count 12
+
+        //- Rate button
+        .input-container.width-260
+          label.input-container__label
+            h3.input-container__title.mb-15 Rate button
+          .d-flex.justify-content-between
+            //- Rate block
+            fieldset.rate__fieldset
+              input(type="radio", name="rate", value="1" aria-label="Ужасно").rate__input.rate__star
+              input(type="radio", name="rate", value="2" aria-label="Плохо").rate__input.rate__star
+              input(type="radio", name="rate", value="3" aria-label="Средне").rate__input.rate__star
+              input(type="radio", name="rate", value="4" aria-label="Хорошо").rate__input.rate__star
+              input(type="radio", name="rate", value="5" aria-label="Отлично").rate__input.rate__star
+            //- Rate Demo (don't use)
+            fieldset.rate__fieldset
+              input(type="radio", name="rate-demo", value="1" aria-label="Ужасно").rate__input.rate__star
+              input(type="radio", name="rate-demo", value="2" aria-label="Плохо").rate__input.rate__star
+              input(type="radio", name="rate-demo", value="3" aria-label="Средне").rate__input.rate__star
+              input(type="radio", name="rate-demo", value="4" aria-label="Хорошо" checked).rate__input.rate__star
+              input(type="radio", name="rate-demo", value="5" aria-label="Отлично").rate__input.rate__star
+      .col-4.mt-md-4.mt-lg-0
+        .input-container.width-220.mb-40
+          label.input-container__label
+            h3.input-container__title.mb-15 Buttons
+          .d-flex.justify-content-between.mb-30
+            input(type="submit", value="Click Me").input-submit-fill
+            input(type="submit", value="Click Me").input-submit-fill.input-submit-fill_hover
+          .d-flex.justify-content-between.mb-30
+            .input-submit-outline
+              input(type="submit", value="Click Me").input-submit-outline__input
+            .input-submit-outline.input-submit-outline_hover
+              input(type="submit", value="Click Me").input-submit-outline__input
+          .d-flex.mb-30
+            input(type="submit", value="Click Me").input-submit-text
+            input(type="submit", value="Click Me").input-submit-text.input-submit-text_hover.ml-4
+          label.proceed-to-checkout
+            input(type="submit", value="перейти к оплате").proceed-to-checkout__input
+            span.material-icons.proceed-to-checkout__icon arrow_forward
+
+  .container
+    .row.flex-column.flex-lg-row
+      .col-4
+      .col-4.mt-md-4.mt-lg-0
+      .col-4.mt-md-4.mt-lg-0
