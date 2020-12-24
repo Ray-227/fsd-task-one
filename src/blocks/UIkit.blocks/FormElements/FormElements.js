@@ -329,42 +329,43 @@ if ( document.querySelector('.range-slider__input') ) {
         document.addEventListener('mouseup', onMouseUp);
   
         function onMouseMove(event) {
+          // Для правого нужно узнавать, левую границу ползунка
           let rightThumpBound = Number( rightThump.style.left.replace('%', '') );
+          // Для правого - текущее право
           currentLeft = Number( leftThump.style.left.replace('%', '') );
 
+          // Проверять текущее право больше границы левого полузнка
           if (currentLeft < rightThumpBound) {
+            // Сделать для правого
             leftThump.style.zIndex = 2;
 
             setTimeout(() => {
               x = event.clientX;
             }, 100);
-  
-            if (currentLeft < 0) {
-              leftThump.style.left = 0 + '%';
-              document.querySelector('.range-slider__fill').style.left = 0 + '%';
-            } else if (currentLeft > rangeEnd) {
-              leftThump.style.left = rangeEnd + '%';
-              document.querySelector('.range-slider__fill').style.left = rangeEnd + '%';
-            } else if (x < event.clientX && currentLeft < rangeEnd) {
+            
+            // Сделать для правого все условие
+            if (x < event.clientX && currentLeft < rangeEnd) {
               leftThump.style.left = (currentLeft + move) + '%';
               document.querySelector('.range-slider__fill').style.left = (currentLeft + move) + '%';
+              document.querySelector('.range-slider__fill').style.width = (rightThumpBound - currentLeft + 3) + '%';
               update('left+');
             } else if (x > event.clientX && currentLeft > 0) {
               leftThump.style.left = (currentLeft - move) + '%';
               document.querySelector('.range-slider__fill').style.left = (currentLeft - move) + '%';
+              document.querySelector('.range-slider__fill').style.width = (rightThumpBound - currentLeft + 3) + '%';
               update('left-');
             }
           } else if (x > event.clientX) {
-            leftThump.style.left = (currentLeft - move) + '%';
+            leftThump.style.left = (currentLeft - move) + '%'; // Сделать для правого
             document.querySelector('.range-slider__fill').style.left = (currentLeft - move) + '%';
             update('left-');
           } else {
-            leftThump.style.zIndex = 666;
+            leftThump.style.zIndex = 666; // Сделать для правого
           }
         }
   
         function onMouseUp() {
-          leftThump.style.cursor = 'grab';
+          leftThump.style.cursor = 'grab'; // Сделать для правого
           document.body.style.cursor = 'default';
           document.removeEventListener('mouseup', onMouseUp);
           document.removeEventListener('mousemove', onMouseMove);
