@@ -58,7 +58,7 @@
 
 .calendar-container__date_currentDate {
   @include MontserratBold(12px, 16px);
-  @include SecondaryGradient;
+  @include GreenGradient;
   border-radius: 44px;
   color: white;
 }

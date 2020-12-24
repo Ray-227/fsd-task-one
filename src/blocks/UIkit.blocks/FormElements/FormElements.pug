@@ -172,6 +172,15 @@ main
               input(type="radio", name="rate-demo", value="4" aria-label="Хорошо" checked).rate__input.rate__star
               input(type="radio", name="rate-demo", value="5" aria-label="Отлично").rate__input.rate__star
       .col-4.mt-md-4.mt-lg-0
+        //- Range Slider
+        .input-container.width-260.mb-40
+          label(for="email").input-container__label.mb-20
+            h3.input-container__title Range Slider
+            p.input-container__info.range-slider-output
+          .range-slider
+            input(type="range" name="range-slider").range-slider__input
+
+        //- Buttons
         .input-container.width-220.mb-40
           label.input-container__label
             h3.input-container__title.mb-15 Buttons

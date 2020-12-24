@@ -211,3 +211,179 @@ if ( document.querySelector('.input-date-dropdown') ) {
     };
   });
 }
+
+if ( document.querySelector('.range-slider__input') ) {
+
+  // ?: Событие input генерируется при каждом изменений
+  // ?: Событие change генерируется при потере фокуса, самый момент для записи json или localStorage
+
+  class Range {
+    /*
+    Global variables:
+      this.range - html node
+      this.output - html node
+      this.options - objcet
+    */
+    constructor(selectorRange, selectorOutput) {
+      this.range = document.querySelector(selectorRange);
+      this.output = document.querySelector(selectorOutput);
+
+      this.createThump();
+    }
+
+    createThump() {
+      let rangeThump = ['range-slider__left-thumb', 'range-slider__fill', 'range-slider__right-thumb'];
+      let span = '';
+      for (let i = 0; i < rangeThump.length; i++) {
+        span = document.createElement('span');
+        span.classList.add(`${rangeThump[i]}`);
+        document.querySelector('.range-slider').append(span);
+      }
+    }
+
+    create(min = 0, max = 100, valueLeft = 25, valueRight = 75, step = 1) {
+
+      if (typeof min === 'string' || 
+          typeof max === 'string' || 
+          typeof valueLeft === 'string' || 
+          typeof valueRight === 'string' || 
+          typeof step === 'string'
+          ) {
+          console.log('Error: значение не может быть string');
+          min = 0;
+          max = 100;
+          valueLeft = 25;
+          valueRight = 75;
+          step = 1;
+        } else {
+          min = Math.round(min);
+          max = Math.round(max);
+          valueLeft = Math.round(valueLeft);
+          valueRight = Math.round(valueRight);
+          step = Math.round(step);
+        }
+
+      if (valueLeft > valueRight) {
+        valueRight = max;
+        console.log('Error: valueRight не может быть больше valueLeft')
+      }
+
+      this.options = {
+        min: min || 0,
+        max: max || 100,
+        valueLeft: valueLeft || 25,
+        valueRight: valueRight || 75,
+        step: step || 1
+      };
+
+      for (let key in this.options) {
+        this.range.setAttribute(`${key}`, this.options[key]);
+      }
+      
+      this.output.innerHTML = `${this.options.valueLeft}₽ - ${this.options.valueRight}₽`;
+
+      let indentLeft = this.options.valueLeft / this.options.max * 100;
+      let indentRight = this.options.valueRight / this.options.max * 100;
+      let widthForFill = ( (indentRight - indentLeft) / 100) * document.querySelector('.range-slider').offsetWidth;
+
+      document.querySelector('.range-slider__left-thumb').style.left = indentLeft + '%';
+      document.querySelector('.range-slider__fill').style.left = indentLeft + '%';
+      document.querySelector('.range-slider__fill').style.width = (widthForFill + 3) + 'px';
+      document.querySelector('.range-slider__right-thumb').style.left = indentRight + '%';
+
+      this.eventRange();
+    }
+
+    eventRange() {
+      let range = this.range;
+      let leftThump = document.querySelector('.range-slider__left-thumb');
+      let rightThump = document.querySelector('.range-slider__right-thumb');
+      // (step / max) * 100 - на сколько процентов двигать влево или вправо
+      let move = (this.options.step / this.options.max) * 100;
+      // Конец движения ползунков
+      let rangeEnd = Math.round( ( (range.offsetWidth - leftThump.offsetWidth) / range.offsetWidth) * 100 ) + 0.5;
+
+      range.oninput = range.onchange = (e) => {
+        e.preventDefault();
+      };
+
+      update = (what) => {
+        if (what === 'left+') {
+          this.options.valueLeft += this.options.step;
+          this.output.innerHTML = `${this.options.valueLeft}₽ - ${this.options.valueRight}₽`;
+        } else if (what === 'left-') {
+          this.options.valueLeft -= this.options.step;
+          this.output.innerHTML = `${this.options.valueLeft}₽ - ${this.options.valueRight}₽`;
+        }
+      };
+
+      leftThump.onmousedown = function(event) {
+        event.preventDefault(); // предотвратить запуск выделения (действие браузера)
+        document.body.style.cursor = 'grabbing';
+        leftThump.style.cursor = 'grabbing';
+        
+        let currentLeft = 0;
+        let x = event.clientX;
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+  
+        function onMouseMove(event) {
+          let rightThumpBound = Number( rightThump.style.left.replace('%', '') );
+          currentLeft = Number( leftThump.style.left.replace('%', '') );
+
+          if (currentLeft < rightThumpBound) {
+            leftThump.style.zIndex = 2;
+
+            setTimeout(() => {
+              x = event.clientX;
+            }, 100);
+  
+            if (currentLeft < 0) {
+              leftThump.style.left = 0 + '%';
+              document.querySelector('.range-slider__fill').style.left = 0 + '%';
+            } else if (currentLeft > rangeEnd) {
+              leftThump.style.left = rangeEnd + '%';
+              document.querySelector('.range-slider__fill').style.left = rangeEnd + '%';
+            } else if (x < event.clientX && currentLeft < rangeEnd) {
+              leftThump.style.left = (currentLeft + move) + '%';
+              document.querySelector('.range-slider__fill').style.left = (currentLeft + move) + '%';
+              update('left+');
+            } else if (x > event.clientX && currentLeft > 0) {
+              leftThump.style.left = (currentLeft - move) + '%';
+              document.querySelector('.range-slider__fill').style.left = (currentLeft - move) + '%';
+              update('left-');
+            }
+          } else if (x > event.clientX) {
+            leftThump.style.left = (currentLeft - move) + '%';
+            document.querySelector('.range-slider__fill').style.left = (currentLeft - move) + '%';
+            update('left-');
+          } else {
+            leftThump.style.zIndex = 666;
+          }
+        }
+  
+        function onMouseUp() {
+          leftThump.style.cursor = 'grab';
+          document.body.style.cursor = 'default';
+          document.removeEventListener('mouseup', onMouseUp);
+          document.removeEventListener('mousemove', onMouseMove);
+        }
+        
+      };
+  
+      leftThump.ondragstart = function() {
+        return false;
+      };
+    }
+  }
+
+  let range = new Range('.range-slider__input', '.range-slider-output');
+  /* 
+    Number: min
+    Number: max
+    Number: step
+  */
+  range.create(0, 20000, 5000, 10000, 100);
+
+}

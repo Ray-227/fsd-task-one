@@ -1,0 +1,7 @@
+{
+  "vscodeGoogleTranslate.preferredLanguage": "English",
+  "vscodeGoogleTranslate.proxyPassword": "password",
+  "vscodeGoogleTranslate.proxyHost": "120.0.0.1",
+  "vscodeGoogleTranslate.proxyPort": "8080",
+  "vscodeGoogleTranslate.proxyUsername": "admin"
+}
