@@ -296,76 +296,63 @@ if ( document.querySelector('.range-slider__input') ) {
 
     eventRange() {
       let range = this.range;
-      let leftThump = document.querySelector('.range-slider__left-thumb');
-      let rightThump = document.querySelector('.range-slider__right-thumb');
-      // (step / max) * 100 - на сколько процентов двигать влево или вправо
-      let move = (this.options.step / this.options.max) * 100;
-      // Конец движения ползунков
-      let rangeEnd = Math.round( ( (range.offsetWidth - leftThump.offsetWidth) / range.offsetWidth) * 100 ) + 0.5;
 
       range.oninput = range.onchange = (e) => {
         e.preventDefault();
       };
 
-      update = (what) => {
-        if (what === 'left+') {
-          this.options.valueLeft += this.options.step;
-          this.output.innerHTML = `${this.options.valueLeft}₽ - ${this.options.valueRight}₽`;
-        } else if (what === 'left-') {
-          this.options.valueLeft -= this.options.step;
-          this.output.innerHTML = `${this.options.valueLeft}₽ - ${this.options.valueRight}₽`;
-        }
-      };
+      let leftThump = document.querySelector('.range-slider__left-thumb');
+      let rightThump = document.querySelector('.range-slider__right-thumb');
+      let rangeFill = document.querySelector('.range-slider__fill');
 
+      // (step / max) * 100 - на сколько процентов двигать влево или вправо
+      let move = (this.options.step / this.options.max) * 100;
+      // Конец движения ползунков
+      let rangeEnd = Math.round( ( (range.offsetWidth - leftThump.offsetWidth) / range.offsetWidth) * 100 ) + 0.5;
+
+      // ВЕШАЕМ СОБЫТИЯ 
       leftThump.onmousedown = function(event) {
-        event.preventDefault(); // предотвратить запуск выделения (действие браузера)
+        event.preventDefault();
+        
         document.body.style.cursor = 'grabbing';
         leftThump.style.cursor = 'grabbing';
-        
-        let currentLeft = 0;
+
         let x = event.clientX;
 
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
-  
-        function onMouseMove(event) {
-          // Для правого нужно узнавать, левую границу ползунка
-          let rightThumpBound = Number( rightThump.style.left.replace('%', '') );
-          // Для правого - текущее право
-          currentLeft = Number( leftThump.style.left.replace('%', '') );
 
-          // Проверять текущее право больше границы левого полузнка
-          if (currentLeft < rightThumpBound) {
-            // Сделать для правого
+        function onMouseMove(event) {
+          let rightThumpBound = Number( rightThump.style.left.replace('%', '') );
+          let leftThumpBound = Number( leftThump.style.left.replace('%', '') );
+
+          let currentLeft = Number( leftThump.style.left.replace('%', '') );
+
+          // УСЛОВИЕ ДВИЖЕНИЯ ПОЛЗУНКА
+          console.log(currentLeft < rightThumpBound, x > event.clientX)
+          if (currentLeft < rightThumpBound || x > event.clientX) {
             leftThump.style.zIndex = 2;
 
             setTimeout(() => {
               x = event.clientX;
             }, 100);
             
-            // Сделать для правого все условие
             if (x < event.clientX && currentLeft < rangeEnd) {
               leftThump.style.left = (currentLeft + move) + '%';
-              document.querySelector('.range-slider__fill').style.left = (currentLeft + move) + '%';
-              document.querySelector('.range-slider__fill').style.width = (rightThumpBound - currentLeft + 3) + '%';
-              update('left+');
+              rangeFill.style.left = (leftThumpBound + move) + '%';
+              rangeFill.style.width = (rightThumpBound - leftThumpBound + 3) + '%';
             } else if (x > event.clientX && currentLeft > 0) {
               leftThump.style.left = (currentLeft - move) + '%';
-              document.querySelector('.range-slider__fill').style.left = (currentLeft - move) + '%';
-              document.querySelector('.range-slider__fill').style.width = (rightThumpBound - currentLeft + 3) + '%';
-              update('left-');
+              rangeFill.style.left = (leftThumpBound - move) + '%';
+              rangeFill.style.width = (rightThumpBound - leftThumpBound + 3) + '%';
             }
-          } else if (x > event.clientX) {
-            leftThump.style.left = (currentLeft - move) + '%'; // Сделать для правого
-            document.querySelector('.range-slider__fill').style.left = (currentLeft - move) + '%';
-            update('left-');
           } else {
-            leftThump.style.zIndex = 666; // Сделать для правого
+            leftThump.style.zIndex = 666; 
           }
         }
   
         function onMouseUp() {
-          leftThump.style.cursor = 'grab'; // Сделать для правого
+          leftThump.style.cursor = 'grab';
           document.body.style.cursor = 'default';
           document.removeEventListener('mouseup', onMouseUp);
           document.removeEventListener('mousemove', onMouseMove);
