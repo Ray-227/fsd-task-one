@@ -310,59 +310,88 @@ if ( document.querySelector('.range-slider__input') ) {
       // Конец движения ползунков
       let rangeEnd = Math.round( ( (range.offsetWidth - leftThump.offsetWidth) / range.offsetWidth) * 100 ) + 0.5;
 
-      // ВЕШАЕМ СОБЫТИЯ 
-      leftThump.onmousedown = function(event) {
-        event.preventDefault();
-        
-        document.body.style.cursor = 'grabbing';
-        leftThump.style.cursor = 'grabbing';
+      function posRangeFill(leftThumpBound, rightThumpBound, whichThump) {
+        if (whichThump === 'left') {
+          rangeFill.style.left = (leftThumpBound - move + 2) + '%';
+          rangeFill.style.width = (rightThumpBound - leftThumpBound + move) + '%';
+        } else if (whichThump === 'right') {
+          rangeFill.style.left = (leftThumpBound) + '%';
+          rangeFill.style.width = (rightThumpBound - leftThumpBound + move + 2) + '%';
+        }
+      }
 
-        let x = event.clientX;
-
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', onMouseUp);
-
-        function onMouseMove(event) {
-          let rightThumpBound = Number( rightThump.style.left.replace('%', '') );
-          let leftThumpBound = Number( leftThump.style.left.replace('%', '') );
-
-          let currentLeft = Number( leftThump.style.left.replace('%', '') );
-
-          // УСЛОВИЕ ДВИЖЕНИЯ ПОЛЗУНКА
-          console.log(currentLeft < rightThumpBound, x > event.clientX)
-          if (currentLeft < rightThumpBound || x > event.clientX) {
-            leftThump.style.zIndex = 2;
-
-            setTimeout(() => {
-              x = event.clientX;
-            }, 100);
-            
-            if (x < event.clientX && currentLeft < rangeEnd) {
-              leftThump.style.left = (currentLeft + move) + '%';
-              rangeFill.style.left = (leftThumpBound + move) + '%';
-              rangeFill.style.width = (rightThumpBound - leftThumpBound + 3) + '%';
-            } else if (x > event.clientX && currentLeft > 0) {
-              leftThump.style.left = (currentLeft - move) + '%';
-              rangeFill.style.left = (leftThumpBound - move) + '%';
-              rangeFill.style.width = (rightThumpBound - leftThumpBound + 3) + '%';
+      eventThump(leftThump, 'left');
+      eventThump(rightThump, 'right');
+      
+      // ВЕШАЕМ СОБЫТИЯ
+      function eventThump(currentThump, whichThump) {
+        currentThump.onmousedown = function(event) {
+          event.preventDefault();
+          
+          document.body.style.cursor = 'grabbing';
+          currentThump.style.cursor = 'grabbing';
+  
+          let x = event.clientX;
+          let isThumpBound = false;
+  
+          document.addEventListener('mousemove', onMouseMove);
+          document.addEventListener('mouseup', onMouseUp);
+  
+          function onMouseMove(event) {
+            let rightThumpBound = Number( rightThump.style.left.replace('%', '') );
+            let leftThumpBound = Number( leftThump.style.left.replace('%', '') );
+  
+            if (rightThumpBound < leftThumpBound) {
+              currentThump.style.left = leftThumpBound + '%';
             }
-          } else {
-            leftThump.style.zIndex = 666; 
+  
+            let currentLeft = Number( currentThump.style.left.replace('%', '') );
+  
+            // УСЛОВИЕ ДВИЖЕНИЯ ПОЛЗУНКА
+            
+            if (whichThump === 'left') {
+              leftThump.style.zIndex = 3;
+              rightThump.style.zIndex = 2;
+              isThumpBound = currentLeft < rightThumpBound || x > event.clientX;
+            } else if (whichThump === 'right') {
+              rightThump.style.zIndex = 3;
+              leftThump.style.zIndex = 2;
+              isThumpBound = currentLeft > leftThumpBound || x < event.clientX;
+            }
+  
+            if (isThumpBound) {
+  
+              setTimeout(() => {
+                x = event.clientX;
+              }, 100);
+              
+              if (currentLeft > rangeEnd) {
+                currentThump.style.left = rangeEnd + '%';
+              } else if (x < event.clientX && currentLeft < rangeEnd) {
+                currentThump.style.left = (currentLeft + move) + '%';
+                posRangeFill(leftThumpBound, rightThumpBound, whichThump);
+              } else if (x > event.clientX && currentLeft > 0) {
+                currentThump.style.left = (currentLeft - move) + '%';
+                posRangeFill(leftThumpBound, rightThumpBound, whichThump);
+              }
+            } else {
+              currentThump.style.zIndex = 666; 
+            }
           }
-        }
-  
-        function onMouseUp() {
-          leftThump.style.cursor = 'grab';
-          document.body.style.cursor = 'default';
-          document.removeEventListener('mouseup', onMouseUp);
-          document.removeEventListener('mousemove', onMouseMove);
-        }
-        
-      };
-  
-      leftThump.ondragstart = function() {
-        return false;
-      };
+    
+          function onMouseUp() {
+            currentThump.style.cursor = 'grab';
+            document.body.style.cursor = 'default';
+            document.removeEventListener('mouseup', onMouseUp);
+            document.removeEventListener('mousemove', onMouseMove);
+          }
+          
+        };
+    
+        currentThump.ondragstart = function() {
+          return false;
+        };
+      }
     }
   }
 
