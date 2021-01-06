@@ -123,6 +123,7 @@ if ( document.querySelector('.dropdown') ) {
       let dropdowns = document.querySelectorAll('.dropdown');
       
       dropdowns.forEach( (dropdown, index) => {
+        console.log(dropdown, dropdown.children)
         let options = convertToObject( dropdown.getAttribute('options') );
         dropdown.removeAttribute('options');
         let keys = Object.keys(options);
@@ -135,19 +136,17 @@ if ( document.querySelector('.dropdown') ) {
         createElements(dropdown, 'div.dropdown__options.dropdown_hidden');
 
         let dropdownOptionBlock = document.querySelectorAll('.dropdown__options')[index];
-        console.log('index', index)
 
         // Create dropdown__option in dropdown__options
         for (let i = 0; i < keys.length; i++) {
-          console.log('Create dropdown__option in dropdown__options', i, 'index', index)
           createElements(dropdownOptionBlock, 'div.dropdown__option', content='none', attribute=`name=${keys[i]}`);
 
-          let dropdownOptionElement = document.querySelectorAll('.dropdown__option')[i];
+          let dropdownOptionElement = document.querySelectorAll('.dropdown__option')[document.querySelectorAll('.dropdown__option').length - 1];
           let content = options[keys[i]][0].toUpperCase() + options[keys[i]].slice(1);
           createElements(dropdownOptionElement, 'h3.dropdown__people', content);
           createElements(dropdownOptionElement, 'div.dropdown__count');
 
-          let dropdownCount = document.querySelectorAll('.dropdown__count')[i];
+          let dropdownCount = document.querySelectorAll('.dropdown__count')[document.querySelectorAll('.dropdown__count').length - 1];
           createElements(dropdownCount, 'span.dropdown__count-circle.dropdown__count-remove.material-icons', 'remove');
           createElements(dropdownCount, 'h3.dropdown__output', '0');
           createElements(dropdownCount, 'span.material-icons.dropdown__count-circle.dropdown__count-add', 'add');
