@@ -1,21 +1,39 @@
 if ( document.querySelector('.dropdown') ) {
 
-  class DropDown {
-    constructor() {
-      this.people = { 
-        adult: 0, 
-        child: 0, 
-        baby: 0
-      };
-    }
+  /*
+  .dropdown(options="adult: Взрослые, child: дети, baby: младенцы", text="Сколько гостей")
+    .dropdown__body 
+      p.dropdown__text Сколько гостей
+      span.material-icons.dropdown__icon expand_more
+    .dropdown__options.dropdown_hidden
+      .dropdown__option(name="adult")
+        h3.dropdown__people Взрослые
+        .dropdown__count
+          span.material-icons.dropdown__count-circle.dropdown__count-remove remove
+          h3.dropdown__output 0
+          span.material-icons.dropdown__count-circle.dropdown__count-add add
+      .dropdown__option(name="child")
+        h3.dropdown__people Дети
+        .dropdown__count
+          span.material-icons.dropdown__count-circle.dropdown__count-remove remove
+          h3.dropdown__output 0
+          span.material-icons.dropdown__count-circle.dropdown__count-add add
+      .dropdown__option(name="baby")
+        h3.dropdown__people Младенцы
+        .dropdown__count
+          span.material-icons.dropdown__count-circle.dropdown__count-remove remove
+          h3.dropdown__output 0
+          span.material-icons.dropdown__count-circle.dropdown__count-add add
+      .dropdown__buttons
+        input(type="submit", value="Очистить" name="reset").dropdown__submit.dropdown__submit_hidden
+        input(type="submit", value="Применить" name="apply").dropdown__submit
+  
+  TODO: Сделать возможность кликать через tab -> setAttribute('tabindex', '0')
+  TODO: Сделать возможность открыть/закрыть dropdown через пробел
+  TODO: Сделать сохранение значений в localStorage
 
-    toggle() {
-      document.querySelector('.dropdown').classList.toggle('dropdown_show');
-      document.querySelector('.dropdown__icon').classList.toggle('dropdown__icon_rotate-180');
-      document.querySelector('.dropdown__options').classList.toggle('visually-hidden');
-    }
-
-    setJSON() {
+  TODO: Сделать отображение выбора пользователя в теге с помощью JSON ->
+      setJSON() {
       document.querySelector('.dropdown').setAttribute('people', `${JSON.stringify(this.people)}`);
     }
 
@@ -23,114 +41,131 @@ if ( document.querySelector('.dropdown') ) {
       JSON.parse(document.querySelector('.dropdown').getAttribute('people'));
     }
 
-    add(target, output) {
-      document.querySelectorAll('.dropdown__submit')[0].classList.remove('dropdown__submit_hidden');
 
-      let count = 0;
-      for (let key in this.people) {
-        count += Number(this.people[key]);
-      }
+    toggle() {
+      document.querySelector('.dropdown').classList.toggle('dropdown_show');
+      document.querySelector('.dropdown__icon').classList.toggle('dropdown__icon_rotate-180');
+      document.querySelector('.dropdown__options').classList.toggle('.dropdown_hidden');
+    }
+  */
 
-      if (count < 20) {
-        this.people[target] += 1;
-        output.innerHTML = this.people[target];
-        this.output();
-        this.setJSON();
+  function createElements(where, what, content='none', attribute='none', insert='end') {
+  /* 
+  создать элементы: 
+    where - где-куда? (DOM Element)
+    what - какой и с каким классом?
+    content - с каким содержимым?
+    attribute - с каким атрибутом или атрибутами?
+    insert - вставить в начало или конец?
+  */
+
+
+  let whatSplit = what.split('.');
+
+  let tag = whatSplit.shift();
+  tag = document.createElement(tag);
+  if (attribute !== 'none') {
+    if (attribute.includes(',')) {
+      let attr = convertToObject(attribute);
+      let keys = Object.keys(attr);
+
+      for (let i = 0; i < keys.length; i++) {
+        tag.setAttribute(keys[i], attr[keys[i]]);
       }
+    } else {
+      let attr = attribute.split('=');
+      tag.setAttribute(attr[0], attr[1]);
+    }
+  }
+
+  let className = whatSplit.join(' ');
+  tag.className = className;
+
+
+  if (content !== 'none') {
+    tag.innerHTML = content;
+  }
+
+
+  if (insert === 'start') {
+    where.prepend(tag);
+  } else if (insert === 'end') {
+    where.append(tag);
+  }
+}
+
+  function convertToObject(options) {
+    let optionsSplit = options.split(',');
+    let obj = {};
+    let temp;
+
+    optionsSplit.forEach(item => {
+      if (item.includes(':')) {
+        temp = item.split(':');
+      } else if (item.includes('=')) {
+        temp = item.split('=');
+      }
+        if ( temp[1].includes(`"`) ) {
+          temp[1] = temp[1].replace(/"/g, '');
+        } else if ( temp[1].includes(`'`) ) {
+          temp[1] = temp[1].replace(/'/g, '');
+        }
+
+        obj[temp[0].trim()] = temp[1].trim();
+    })
+
+    return obj;
+  }
+
+  class DropDown {
+
+    render() {
+      let dropdowns = document.querySelectorAll('.dropdown');
+      
+      dropdowns.forEach( (dropdown, index) => {
+        let options = convertToObject( dropdown.getAttribute('options') );
+        dropdown.removeAttribute('options');
+        let keys = Object.keys(options);
+
+        let text = dropdown.getAttribute('text');
+        dropdown.removeAttribute('text');
+
+        createElements(dropdown, 'p.dropdown__text', text);
+        createElements(dropdown, 'span.material-icons.dropdown__icon', 'expand_more');
+        createElements(dropdown, 'div.dropdown__options.dropdown_hidden');
+
+        let dropdownOptionBlock = document.querySelectorAll('.dropdown__options')[index];
+        console.log('index', index)
+
+        // Create dropdown__option in dropdown__options
+        for (let i = 0; i < keys.length; i++) {
+          console.log('Create dropdown__option in dropdown__options', i, 'index', index)
+          createElements(dropdownOptionBlock, 'div.dropdown__option', content='none', attribute=`name=${keys[i]}`);
+
+          let dropdownOptionElement = document.querySelectorAll('.dropdown__option')[i];
+          let content = options[keys[i]][0].toUpperCase() + options[keys[i]].slice(1);
+          createElements(dropdownOptionElement, 'h3.dropdown__people', content);
+          createElements(dropdownOptionElement, 'div.dropdown__count');
+
+          let dropdownCount = document.querySelectorAll('.dropdown__count')[i];
+          createElements(dropdownCount, 'span.dropdown__count-circle.dropdown__count-remove.material-icons', 'remove');
+          createElements(dropdownCount, 'h3.dropdown__output', '0');
+          createElements(dropdownCount, 'span.material-icons.dropdown__count-circle.dropdown__count-add', 'add');
+        }
+        
+        // Create dropdown__buttons in dropdown__options
+        createElements(dropdownOptionBlock, 'div.dropdown__buttons');
+
+        let dropdownButtons = document.querySelectorAll('.dropdown__buttons')[index];
+        createElements(dropdownButtons, 'input.dropdown__submit.dropdown__submit_hidden', 'none', 'type="submit", value="Очистить", name="reset"');
+        createElements(dropdownButtons, 'input.dropdown__submit', 'none', 'type="submit", value="Применить", name="apply"');
+      })
     }
 
-    remove(target, output) {
-      if (this.people[target] > 0) {
-        this.people[target] -= 1;
-        output.innerHTML = this.people[target];
-        this.output();
-        this.setJSON();
-      }
-    }
-
-    removeAll() {
-      for (let key in this.people) {
-        this.people[key] = Number(0);
-      }
-
-    document.querySelectorAll('.dropdown__output').forEach( (item) => {
-      item.innerHTML = 0;
-    });
-
-      document.querySelectorAll('.dropdown__submit')[0].classList.add('dropdown__submit_hidden');
-      this.output();
-      this.setJSON();
-    }
-
-    output() {
-      let count = 0;
-      for (let key in this.people) {
-        count += Number(this.people[key]);
-      }
-      // Я сделал максимум 20 человек, мне было лень обрабатывать оканчания.
-      let output = '';
-      if (count === 1) {
-        output = `${count} гость`;
-      } else if (count < 5) {
-        output = `${count} гостя`;
-      } else {
-        output = `${count} гостей`;
-      }
-
-      if (count === 20) {
-        document.querySelector('.dropdown__text').innerHTML = `${output} (максимум)`;
-      } else {
-        document.querySelector('.dropdown__text').innerHTML = output;
-      }
-    }
-  } 
+  }
 
   let dropDown = new DropDown();
-
-  document.querySelector('.dropdown__body').addEventListener('click', function() {
-    dropDown.toggle();
-  });
-
-  document.querySelector('.dropdown').addEventListener('keydown', function(e) {
-    if (e.code === 'Space' && e.target !== document.body) {
-      e.preventDefault();
-      dropDown.toggle();
-    }
-  });
-
-  document.querySelectorAll('.dropdown__count-add').forEach( (item, i) => {
-    item.addEventListener('click', (e) => {
-      dropDown.add( e.target.offsetParent.childNodes[i].getAttribute('name'), document.querySelectorAll('.dropdown__output')[i]);
-    });
-  });
-
-  document.querySelectorAll('.dropdown__count-remove').forEach( (item, i) => {
-    item.addEventListener('click', (e) => {
-      dropDown.remove( e.target.offsetParent.childNodes[i].getAttribute('name'), document.querySelectorAll('.dropdown__output')[i]);
-    });
-  });
-
-document.querySelectorAll('.dropdown__submit').forEach( (item) => {
-  item.addEventListener('click', (e) => {
-    if (e.target.name === 'reset') {
-      dropDown.removeAll();
-    }
-
-    if (e.target.name === 'apply') {
-      dropDown.toggle();
-    }
-  });
-});
-
-  document.body.addEventListener('click', function(e) {
-    let target = e.target || e.srcElement;
-    // Согласен, немного не понятно, но зато отлично работает, ~ превращает -1 в 0.
-    /* Тут проверка, что при клике у элемента нету класса где фигурирует слово dropdown, 
-      при этом у dropdown обёртки присуствует класс dropdown_show. */
-    if ( !~String(target.className).indexOf('dropdown'.toLowerCase()) && ~String(document.querySelector('.dropdown').className).indexOf('dropdown_show'.toLowerCase())) {
-      dropDown.toggle();
-    }
-  });
+  dropDown.render();
 }
 
 if ( document.querySelector('.input-date-masked') ) {

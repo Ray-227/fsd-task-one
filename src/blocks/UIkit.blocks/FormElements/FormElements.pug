@@ -27,32 +27,9 @@ main
         .input-container.width-320.mb-20
           label().input-container__label
             h3.input-container__title Dropdown
-          .dropdown(people="", tabindex="0")
-            .dropdown__body 
-              p.dropdown__text Сколько гостей
-              span.material-icons.dropdown__icon expand_more
-            .dropdown__options.visually-hidden
-              .dropdown__option(name="adult")
-                h3.dropdown__people Взрослые
-                .dropdown__count
-                  span.material-icons.dropdown__count-circle.dropdown__count-remove remove
-                  h3.dropdown__output 0
-                  span.material-icons.dropdown__count-circle.dropdown__count-add add
-              .dropdown__option(name="child")
-                h3.dropdown__people Дети
-                .dropdown__count
-                  span.material-icons.dropdown__count-circle.dropdown__count-remove remove
-                  h3.dropdown__output 0
-                  span.material-icons.dropdown__count-circle.dropdown__count-add add
-              .dropdown__option(name="baby")
-                h3.dropdown__people Младенцы
-                .dropdown__count
-                  span.material-icons.dropdown__count-circle.dropdown__count-remove remove
-                  h3.dropdown__output 0
-                  span.material-icons.dropdown__count-circle.dropdown__count-add add
-              .dropdown__buttons
-                input(type="submit", value="Очистить" name="reset").dropdown__submit.dropdown__submit_hidden
-                input(type="submit", value="Применить" name="apply").dropdown__submit
+            //- options="name: text, name: text, name: text"
+          .dropdown.mb-20(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей")
+          .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат")
 
         //- Masked Date Field
         .input-container.width-320.mb-40
