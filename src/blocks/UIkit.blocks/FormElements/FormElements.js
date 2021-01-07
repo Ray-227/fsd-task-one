@@ -31,7 +31,7 @@ if ( document.querySelector('.dropdown') ) {
   TODO: Сделать возможность кликать через tab -> setAttribute('tabindex', '0')
   TODO: Сделать возможность открыть/закрыть dropdown через пробел
   TODO: Сделать сохранение значений в localStorage
-
+  TODO: Сделать скрытие dropdown при клике вне dropdown
   TODO: Сделать отображение выбора пользователя в теге с помощью JSON ->
       setJSON() {
       document.querySelector('.dropdown').setAttribute('people', `${JSON.stringify(this.people)}`);
@@ -58,7 +58,6 @@ if ( document.querySelector('.dropdown') ) {
     attribute - с каким атрибутом или атрибутами?
     insert - вставить в начало или конец?
   */
-
 
   let whatSplit = what.split('.');
 
@@ -119,22 +118,32 @@ if ( document.querySelector('.dropdown') ) {
 
   class DropDown {
 
+    constructor() {
+      this.dropDowns = document.querySelectorAll('.dropdown');
+    }
+
     render() {
-      let dropdowns = document.querySelectorAll('.dropdown');
+      let dropDowns = this.dropDowns;
       
-      dropdowns.forEach( (dropdown, index) => {
-        console.log(dropdown, dropdown.children)
+      dropDowns.forEach( (dropdown, index) => {
+
+        dropdown.setAttribute('tabindex', '0');
+
         let options = convertToObject( dropdown.getAttribute('options') );
         dropdown.removeAttribute('options');
         let keys = Object.keys(options);
 
         let text = dropdown.getAttribute('text');
         dropdown.removeAttribute('text');
+        let buttons = dropdown.getAttribute('buttons');
+        dropdown.removeAttribute('buttons');
 
-        createElements(dropdown, 'p.dropdown__text', text);
-        createElements(dropdown, 'span.material-icons.dropdown__icon', 'expand_more');
+        createElements(dropdown, 'div.dropdown__body');
+        let dropdownBody = document.querySelectorAll('.dropdown__body')[index];
+        createElements(dropdownBody, 'p.dropdown__text', text);
+        createElements(dropdownBody, 'span.material-icons.dropdown__icon', 'expand_more');
+
         createElements(dropdown, 'div.dropdown__options.dropdown_hidden');
-
         let dropdownOptionBlock = document.querySelectorAll('.dropdown__options')[index];
 
         // Create dropdown__option in dropdown__options
@@ -152,12 +161,53 @@ if ( document.querySelector('.dropdown') ) {
           createElements(dropdownCount, 'span.material-icons.dropdown__count-circle.dropdown__count-add', 'add');
         }
         
-        // Create dropdown__buttons in dropdown__options
-        createElements(dropdownOptionBlock, 'div.dropdown__buttons');
+        if (buttons === 'true') {
+          // Create dropdown__buttons in dropdown__options
+          createElements(dropdownOptionBlock, 'div.dropdown__buttons');
 
-        let dropdownButtons = document.querySelectorAll('.dropdown__buttons')[index];
-        createElements(dropdownButtons, 'input.dropdown__submit.dropdown__submit_hidden', 'none', 'type="submit", value="Очистить", name="reset"');
-        createElements(dropdownButtons, 'input.dropdown__submit', 'none', 'type="submit", value="Применить", name="apply"');
+          let dropdownButtons = document.querySelectorAll('.dropdown__buttons')[index];
+          createElements(dropdownButtons, 'input.dropdown__submit.dropdown__submit_hidden', 'none', 'type="submit", value="Очистить", name="reset"');
+          createElements(dropdownButtons, 'input.dropdown__submit', 'none', 'type="submit", value="Применить", name="apply"');
+        }
+      })
+    }
+
+    events() {
+      let dropDowns = this.dropDowns;
+      dropDowns.forEach( dropdown => {
+        dropdown.onclick = (e) => {
+          if ( e.target.classList.contains('dropdown__body') || (e.target.classList.contains('dropdown__submit') && e.target.getAttribute('name') === 'apply') ) {
+            dropdown.classList.toggle('dropdown_show');
+
+            if ( dropdown.children[0].classList.contains('dropdown__body') ) {
+              dropdown.children[0].children[1].classList.toggle('dropdown__icon_rotate-180');
+            }
+  
+            if ( dropdown.children[1].classList.contains('dropdown__options') ) {
+              dropdown.children[1].classList.toggle('dropdown_hidden');
+            }
+          }
+        };
+      })
+
+      let blockCounts = document.querySelectorAll('.dropdown__count');
+      blockCounts.forEach( blockCount => {
+        let remove = blockCount.children[0];
+        let output = blockCount.children[1];
+        let add = blockCount.children[2];
+        let count = 0;
+
+        add.onclick = () => {
+          count++;
+          output.innerHTML = count;
+        };
+
+        remove.onclick = () => {
+          if (count > 0) {
+            count--;
+            output.innerHTML = count;
+          }
+        };
       })
     }
 
@@ -165,6 +215,7 @@ if ( document.querySelector('.dropdown') ) {
 
   let dropDown = new DropDown();
   dropDown.render();
+  dropDown.events();
 }
 
 if ( document.querySelector('.input-date-masked') ) {
