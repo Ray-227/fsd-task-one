@@ -130,13 +130,13 @@ if ( document.querySelector('.dropdown') ) {
         dropdown.setAttribute('tabindex', '0');
 
         let options = convertToObject( dropdown.getAttribute('options') );
-        dropdown.removeAttribute('options');
+        //dropdown.removeAttribute('options');
         let keys = Object.keys(options);
 
         let text = dropdown.getAttribute('text');
-        dropdown.removeAttribute('text');
+        //dropdown.removeAttribute('text');
         let buttons = dropdown.getAttribute('buttons');
-        dropdown.removeAttribute('buttons');
+        //dropdown.removeAttribute('buttons');
 
         createElements(dropdown, 'div.dropdown__body');
         let dropdownBody = document.querySelectorAll('.dropdown__body')[index];
@@ -152,7 +152,7 @@ if ( document.querySelector('.dropdown') ) {
 
           let dropdownOptionElement = document.querySelectorAll('.dropdown__option')[document.querySelectorAll('.dropdown__option').length - 1];
           let content = options[keys[i]][0].toUpperCase() + options[keys[i]].slice(1);
-          createElements(dropdownOptionElement, 'h3.dropdown__people', content);
+          createElements(dropdownOptionElement, 'h3.dropdown__info', content);
           createElements(dropdownOptionElement, 'div.dropdown__count');
 
           let dropdownCount = document.querySelectorAll('.dropdown__count')[document.querySelectorAll('.dropdown__count').length - 1];
@@ -176,7 +176,7 @@ if ( document.querySelector('.dropdown') ) {
       let dropDowns = this.dropDowns;
       dropDowns.forEach( dropdown => {
         dropdown.onclick = (e) => {
-          if ( e.target.classList.contains('dropdown__body') || (e.target.classList.contains('dropdown__submit') && e.target.getAttribute('name') === 'apply') ) {
+          if ( e.target.classList.contains('dropdown__body') || e.target.classList.contains('dropdown__icon') || (e.target.classList.contains('dropdown__submit') && e.target.getAttribute('name') === 'apply') ) {
             dropdown.classList.toggle('dropdown_show');
 
             if ( dropdown.children[0].classList.contains('dropdown__body') ) {
@@ -190,25 +190,57 @@ if ( document.querySelector('.dropdown') ) {
         };
       })
 
+      let text = {};
       let blockCounts = document.querySelectorAll('.dropdown__count');
       blockCounts.forEach( blockCount => {
         let remove = blockCount.children[0];
         let output = blockCount.children[1];
         let add = blockCount.children[2];
         let count = 0;
+        let key = blockCount.previousElementSibling.innerText;
+        key = key[0] + key.slice(1).toLowerCase();
+
 
         add.onclick = () => {
-          count++;
-          output.innerHTML = count;
+          if (count < 20) {
+            count++;
+            output.innerHTML = count;
+            text[key] = count;
+            this.output(blockCount, text);
+          }
         };
 
         remove.onclick = () => {
           if (count > 0) {
             count--;
             output.innerHTML = count;
+            if (count > 0) {
+              text[key] = count;
+            } else {
+              delete text[key];
+            }
+            this.output(blockCount, text);
           }
         };
       })
+    }
+
+    output(element, text) {
+      let info = '';
+      let isEmpty = false;
+      for (let key in text) {
+        info += key + ' ' + text[key] + ' ';
+        isEmpty = true;
+      }
+
+      let output = element.parentElement.parentElement.previousElementSibling.firstElementChild;
+
+      if ( isEmpty ) {
+        output.innerHTML = info;
+      } else {
+        output.innerHTML = element.parentElement.parentElement.parentElement.getAttribute('text');
+      }
+
     }
 
   }
