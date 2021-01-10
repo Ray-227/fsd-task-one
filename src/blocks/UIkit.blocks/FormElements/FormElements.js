@@ -191,12 +191,14 @@ if ( document.querySelector('.dropdown') ) {
       })
 
       let text = {};
+      let names = {};
       let blockCounts = document.querySelectorAll('.dropdown__count');
       blockCounts.forEach( blockCount => {
         let remove = blockCount.children[0];
         let output = blockCount.children[1];
         let add = blockCount.children[2];
         let count = 0;
+        let name = blockCount.parentElement.getAttribute('name');
         let key = blockCount.previousElementSibling.innerText;
         key = key[0] + key.slice(1).toLowerCase();
 
@@ -206,7 +208,8 @@ if ( document.querySelector('.dropdown') ) {
             count++;
             output.innerHTML = count;
             text[key] = count;
-            this.output(blockCount, text);
+            names[name] = count;
+            this.output(blockCount, text, names);
           }
         };
 
@@ -216,16 +219,24 @@ if ( document.querySelector('.dropdown') ) {
             output.innerHTML = count;
             if (count > 0) {
               text[key] = count;
+              names[name] = count;
             } else {
               delete text[key];
+              delete names[name];
             }
-            this.output(blockCount, text);
+            this.output(blockCount, text, names);
           }
         };
       })
     }
 
-    output(element, text) {
+    output(element, text, names) {
+      let attr = '';
+      for (let key in names) {
+        attr += key + ' ' + names[key] + ' ';
+      }
+      console.log(attr, attr.trim())
+
       let info = '';
       let isEmpty = false;
       for (let key in text) {
@@ -237,8 +248,10 @@ if ( document.querySelector('.dropdown') ) {
 
       if ( isEmpty ) {
         output.innerHTML = info;
+        element.parentElement.parentElement.parentElement.setAttribute('info', attr);
       } else {
         output.innerHTML = element.parentElement.parentElement.parentElement.getAttribute('text');
+        element.parentElement.parentElement.parentElement.removeAttribute('info');
       }
 
     }
