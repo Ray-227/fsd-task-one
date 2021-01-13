@@ -28,8 +28,7 @@ main
           label().input-container__label
             h3.input-container__title Dropdown
             //- options="name: text, name: text, name: text"
-          .dropdown.mb-20(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", buttons="true")
-          .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты, Balcon: Балкон", text="Сколько комнат")
+          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", buttons="true")
 
         //- Masked Date Field
         .input-container.width-320.mb-40
@@ -185,5 +184,27 @@ main
   .container
     .row.flex-column.flex-lg-row
       .col-4
+        //- DROPDOWN
+        //- У блока .dropdown, есть атрибут info (генерируется js), он обозначает какие значение и в каком кол-во выбрал пользователь.
+        .input-container.width-320.mb-20
+          label().input-container__label
+            h3.input-container__title Dropdown
+            p.input-container__info default
+          .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат")
+        .input-container.width-320.mb-20
+          label().input-container__label
+            h3.input-container__title Dropdown
+            p.input-container__info expanded
+          .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат", show)
       .col-4.mt-md-4.mt-lg-0
+        .input-container.width-320.mb-20
+          label().input-container__label
+            h3.input-container__title Dropdown
+            p.input-container__info expanded
+          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", show, buttons="true")
       .col-4.mt-md-4.mt-lg-0
+        .input-container.width-320.mb-20
+          label().input-container__label
+            h3.input-container__title Dropdown
+            p.input-container__info expanded
+          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", show, buttons="true")

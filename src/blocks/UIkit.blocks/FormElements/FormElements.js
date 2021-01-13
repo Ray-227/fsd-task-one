@@ -143,7 +143,12 @@ if ( document.querySelector('.dropdown') ) {
         createElements(dropdownBody, 'p.dropdown__text', text);
         createElements(dropdownBody, 'span.material-icons.dropdown__icon', 'expand_more');
 
-        createElements(dropdown, 'div.dropdown__options.dropdown_hidden');
+        if (dropdown.hasAttribute('show')) {
+          dropdown.classList.toggle('dropdown_show');
+          createElements(dropdown, 'div.dropdown__options');
+        } else {
+          createElements(dropdown, 'div.dropdown__options.dropdown_hidden');
+        }
         let dropdownOptionBlock = document.querySelectorAll('.dropdown__options')[index];
 
         // Create dropdown__option in dropdown__options
@@ -165,7 +170,7 @@ if ( document.querySelector('.dropdown') ) {
           // Create dropdown__buttons in dropdown__options
           createElements(dropdownOptionBlock, 'div.dropdown__buttons');
 
-          let dropdownButtons = document.querySelectorAll('.dropdown__buttons')[index];
+          let dropdownButtons = document.querySelectorAll('.dropdown__buttons')[document.querySelectorAll('.dropdown__buttons').length - 1];
           createElements(dropdownButtons, 'input.dropdown__submit.dropdown__submit_hidden', 'none', 'type="submit", value="Очистить", name="reset"');
           createElements(dropdownButtons, 'input.dropdown__submit', 'none', 'type="submit", value="Применить", name="apply"');
         }
@@ -176,7 +181,7 @@ if ( document.querySelector('.dropdown') ) {
       let dropDowns = this.dropDowns;
       dropDowns.forEach( dropdown => {
         dropdown.onclick = (e) => {
-          if ( e.target.classList.contains('dropdown__body') || e.target.classList.contains('dropdown__icon') || (e.target.classList.contains('dropdown__submit') && e.target.getAttribute('name') === 'apply') ) {
+          if ( e.target.classList.contains('dropdown__body') || e.target.classList.contains('dropdown__icon') || e.target.classList.contains('dropdown__text') || (e.target.classList.contains('dropdown__submit') && e.target.getAttribute('name') === 'apply') ) {
             dropdown.classList.toggle('dropdown_show');
 
             if ( dropdown.children[0].classList.contains('dropdown__body') ) {
