@@ -189,44 +189,53 @@ if ( document.querySelector('.dropdown') ) {
           }
         };
       })
+      let options = document.querySelectorAll('.dropdown__options');
 
-      let text = {};
-      let names = {};
-      let blockCounts = document.querySelectorAll('.dropdown__count');
-      blockCounts.forEach( blockCount => {
-        let remove = blockCount.children[0];
-        let output = blockCount.children[1];
-        let add = blockCount.children[2];
-        let count = 0;
-        let name = blockCount.parentElement.getAttribute('name');
-        let key = blockCount.previousElementSibling.innerText;
-        key = key[0] + key.slice(1).toLowerCase();
+      options.forEach( option => {
+        let text = {};
+        let names = {};
+        let currentOption = Array.from(option.children);
 
+        currentOption.forEach( (option, index) => {
 
-        add.onclick = () => {
-          if (count < 20) {
-            count++;
-            output.innerHTML = count;
-            text[key] = count;
-            names[name] = count;
-            this.output(blockCount, text, names);
+          if (option.classList.contains('dropdown__option')) {
+            let remove = option.children[1].children[0];
+            let output = option.children[1].children[1];
+            let add = option.children[1].children[2];
+  
+            let count = 0;
+            let name = option.getAttribute('name');
+            let key = option.children[0].innerText;
+            key = key[0] + key.slice(1).toLowerCase();
+    
+    
+            add.onclick = () => {
+              if (count < 20) {
+                count++;
+                output.innerHTML = count;
+                text[key] = count;
+                names[name] = count;
+                this.output(option, text, names);
+              }
+            };
+    
+            remove.onclick = () => {
+              if (count > 0) {
+                count--;
+                output.innerHTML = count;
+                if (count > 0) {
+                  text[key] = count;
+                  names[name] = count;
+                } else {
+                  delete text[key];
+                  delete names[name];
+                }
+                this.output(option, text, names);
+              }
+            };
           }
-        };
 
-        remove.onclick = () => {
-          if (count > 0) {
-            count--;
-            output.innerHTML = count;
-            if (count > 0) {
-              text[key] = count;
-              names[name] = count;
-            } else {
-              delete text[key];
-              delete names[name];
-            }
-            this.output(blockCount, text, names);
-          }
-        };
+        })
       })
     }
 
@@ -235,7 +244,7 @@ if ( document.querySelector('.dropdown') ) {
       for (let key in names) {
         attr += key + ' ' + names[key] + ' ';
       }
-      console.log(attr, attr.trim())
+      attr = attr.trim();
 
       let info = '';
       let isEmpty = false;
@@ -244,16 +253,15 @@ if ( document.querySelector('.dropdown') ) {
         isEmpty = true;
       }
 
-      let output = element.parentElement.parentElement.previousElementSibling.firstElementChild;
+      let output = element.parentElement.previousElementSibling.firstElementChild;
 
       if ( isEmpty ) {
         output.innerHTML = info;
-        element.parentElement.parentElement.parentElement.setAttribute('info', attr);
+        element.parentElement.parentElement.setAttribute('info', attr);
       } else {
-        output.innerHTML = element.parentElement.parentElement.parentElement.getAttribute('text');
-        element.parentElement.parentElement.parentElement.removeAttribute('info');
+        output.innerHTML = element.parentElement.parentElement.getAttribute('text');
+        element.parentElement.parentElement.removeAttribute('info');
       }
-
     }
 
   }
