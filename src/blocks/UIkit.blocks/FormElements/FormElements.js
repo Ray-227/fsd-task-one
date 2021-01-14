@@ -1,3 +1,78 @@
+function createElements(where, what, content='none', attribute='none', insert='end') {
+  /* 
+  создать элементы: 
+    where - где-куда? (DOM Element)
+    what - какой и с каким классом?
+    content - с каким содержимым?
+    attribute - с каким атрибутом или атрибутами?
+    insert - вставить в начало или конец?
+  */
+
+  if (typeof where !== 'object') {
+    let element = where.split('=')[0];
+    let index = where.split('=')[1];
+    where = document.querySelectorAll(element)[index];
+
+    // console.log(where, element, index);
+  }
+
+  let whatSplit = what.split('.');
+
+  let tag = whatSplit.shift();
+  tag = document.createElement(tag);
+  if (attribute !== 'none') {
+    if (attribute.includes(',')) {
+      let attr = convertToObject(attribute);
+      let keys = Object.keys(attr);
+
+      for (let i = 0; i < keys.length; i++) {
+        tag.setAttribute(keys[i], attr[keys[i]]);
+      }
+    } else {
+      let attr = attribute.split('=');
+      tag.setAttribute(attr[0], attr[1]);
+    }
+  }
+
+  let className = whatSplit.join(' ');
+  tag.className = className;
+
+
+  if (content !== 'none') {
+    tag.innerHTML = content;
+  }
+
+
+  if (insert === 'start') {
+    where.prepend(tag);
+  } else if (insert === 'end') {
+    where.append(tag);
+  }
+}
+
+function convertToObject(options) {
+  let optionsSplit = options.split(',');
+  let obj = {};
+  let temp;
+
+  optionsSplit.forEach(item => {
+    if (item.includes(':')) {
+      temp = item.split(':');
+    } else if (item.includes('=')) {
+      temp = item.split('=');
+    }
+      if ( temp[1].includes(`"`) ) {
+        temp[1] = temp[1].replace(/"/g, '');
+      } else if ( temp[1].includes(`'`) ) {
+        temp[1] = temp[1].replace(/'/g, '');
+      }
+
+      obj[temp[0].trim()] = temp[1].trim();
+  })
+
+  return obj;
+}
+
 if ( document.querySelector('.dropdown') ) {
 
   /*
@@ -48,73 +123,6 @@ if ( document.querySelector('.dropdown') ) {
       document.querySelector('.dropdown__options').classList.toggle('.dropdown_hidden');
     }
   */
-
-  function createElements(where, what, content='none', attribute='none', insert='end') {
-  /* 
-  создать элементы: 
-    where - где-куда? (DOM Element)
-    what - какой и с каким классом?
-    content - с каким содержимым?
-    attribute - с каким атрибутом или атрибутами?
-    insert - вставить в начало или конец?
-  */
-
-  let whatSplit = what.split('.');
-
-  let tag = whatSplit.shift();
-  tag = document.createElement(tag);
-  if (attribute !== 'none') {
-    if (attribute.includes(',')) {
-      let attr = convertToObject(attribute);
-      let keys = Object.keys(attr);
-
-      for (let i = 0; i < keys.length; i++) {
-        tag.setAttribute(keys[i], attr[keys[i]]);
-      }
-    } else {
-      let attr = attribute.split('=');
-      tag.setAttribute(attr[0], attr[1]);
-    }
-  }
-
-  let className = whatSplit.join(' ');
-  tag.className = className;
-
-
-  if (content !== 'none') {
-    tag.innerHTML = content;
-  }
-
-
-  if (insert === 'start') {
-    where.prepend(tag);
-  } else if (insert === 'end') {
-    where.append(tag);
-  }
-}
-
-  function convertToObject(options) {
-    let optionsSplit = options.split(',');
-    let obj = {};
-    let temp;
-
-    optionsSplit.forEach(item => {
-      if (item.includes(':')) {
-        temp = item.split(':');
-      } else if (item.includes('=')) {
-        temp = item.split('=');
-      }
-        if ( temp[1].includes(`"`) ) {
-          temp[1] = temp[1].replace(/"/g, '');
-        } else if ( temp[1].includes(`'`) ) {
-          temp[1] = temp[1].replace(/'/g, '');
-        }
-
-        obj[temp[0].trim()] = temp[1].trim();
-    })
-
-    return obj;
-  }
 
   class DropDown {
 
@@ -784,4 +792,41 @@ function createElement(where, what, content='none', attribute='none', insert='en
   } else if (insert === 'end') {
     block.append(tag);
   }
+}
+
+if ( document.querySelector('.checkbox-list') ) {
+  /*
+  .checkbox-list.checkbox-list_show
+  .checkbox-list__body
+    .checkbox-list__text expandable checkbox list
+    .checkbox-list__icon.material-icons expand_more
+  .checkbox-list__items
+    label.checkbox__label.checkbox-list__item
+      input(type="checkbox", name="pe1t").checkbox__input
+      .checkbox__box
+      .checkbox__text Завтрак
+  */
+
+  class CheckboxList {
+    constructor() {
+      this.checkboxList = document.querySelectorAll('.checkbox-list');
+    }
+    render() {
+      let checkboxListAll = this.checkboxList;
+
+      checkboxListAll.forEach( (currentCheckboxList, index) => {
+        // createElements(where, what, content='none', attribute='none', insert='end');
+
+        createElements(currentCheckboxList, 'div.checkbox-list__body', content='none', attribute='none', insert='end');
+        createElements(`.checkbox-list__body=${index}`, 'div.checkbox-list__text', 'expandable checkbox list');
+        createElements(`.checkbox-list__body=${index}`, 'div.checkbox-list__icon.material-icons', 'expand_more');
+      })
+    }
+    events() {
+
+    }
+  }
+
+  let checkboxList = new CheckboxList();
+  checkboxList.render();
 }

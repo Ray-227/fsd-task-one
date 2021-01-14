@@ -181,7 +181,7 @@ main
             h3.input-container__title.mb-15 pagination
           .pagination(pages="15")
 
-  .container
+  .container.mb-100
     .row.flex-column.flex-lg-row
       .col-4
         //- DROPDOWN
@@ -191,11 +191,14 @@ main
             h3.input-container__title Dropdown
             p.input-container__info default
           .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат")
-        .input-container.width-320.mb-20
+        .input-container.width-320.mb-40
           label().input-container__label
             h3.input-container__title Dropdown
             p.input-container__info expanded
           .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат", show)
+        
+        //- expandable checkbox list
+        .checkbox-list
       .col-4.mt-md-4.mt-lg-0
         .input-container.width-320.mb-20
           label().input-container__label

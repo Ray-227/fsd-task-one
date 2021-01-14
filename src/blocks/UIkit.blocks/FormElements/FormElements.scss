@@ -139,7 +139,7 @@
 
 .dropdown__buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: 20px;
   margin-bottom: -5px;
 }
@@ -164,9 +164,8 @@
   opacity: 0.5;
 }
 
-.dropdown__submit_hidden, .dropdown__submit_hidden:hover {
-  opacity: 0;
-  cursor: default;
+.dropdown__submit_hidden{
+  display: none;
 }
 
 
@@ -867,6 +866,49 @@
   align-items: center;
   margin-top: 10px;
 }
+
+
+// expandable checkbox list
+.checkbox-list {
+  width: 240px;
+  height: 44px;
+}
+
+.checkbox-list_show {
+  height: auto;
+}
+
+.checkbox-list__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+}
+
+.checkbox-list__text {
+  @include MontserratBold(12px, 14px);
+  color: $Dark100;
+  text-transform: uppercase;
+
+}
+
+.checkbox-list__icon {
+  color: $Dark50;
+}
+
+.checkbox-list__icon_rotate-180 {
+  transform: rotate(180deg);
+}
+
+.checkbox-list__items {
+  display: block;
+}
+
+.checkbox-list__item {
+
+}
+
+
 
 // Width
 .width-320 {
