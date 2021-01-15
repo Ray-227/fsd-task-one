@@ -150,15 +150,16 @@ if ( document.querySelector('.dropdown') ) {
         let dropdownBody = document.querySelectorAll('.dropdown__body')[index];
         createElements(dropdownBody, 'p.dropdown__text', text);
         createElements(dropdownBody, 'span.material-icons.dropdown__icon', 'expand_more');
+          
+        createElements(dropdown, 'div.dropdown__options.dropdown_hidden');
 
-        if (dropdown.hasAttribute('show')) {
-          dropdown.classList.toggle('dropdown_show');
-          createElements(dropdown, 'div.dropdown__options');
-        } else {
-          createElements(dropdown, 'div.dropdown__options.dropdown_hidden');
-        }
         let dropdownOptionBlock = document.querySelectorAll('.dropdown__options')[index];
 
+        if ( dropdown.hasAttribute('show') ) { 
+          dropdown.classList.toggle('dropdown_show');
+          dropdown.children[0].children[1].classList.toggle('dropdown__icon_rotate-180');
+          dropdown.children[1].classList.toggle('dropdown_hidden');
+        }
         // Create dropdown__option in dropdown__options
         for (let i = 0; i < keys.length; i++) {
           createElements(dropdownOptionBlock, 'div.dropdown__option', content='none', attribute=`name=${keys[i]}`);
@@ -755,42 +756,41 @@ if ( document.querySelector('.pagination') ) {
     pagination.setAttribute('current-page', `${paginationItem[i].getAttribute('page')}`);
   };
 
-}
-
-function createElement(where, what, content='none', attribute='none', insert='end') {
-  /* 
-  создать элемент: 
-    где-куда?
-    какой и с каким классом?
-    с каким атрибутом?
-    с каким содержимым?
-    в начало или конец?
-  */
-  let block = document.querySelector(where);
-
-
-  let whatSplit = what.split('.');
-
-  let tag = whatSplit.shift();
-  tag = document.createElement(tag);
-  if (attribute !== 'none') {
-    let attr = attribute.split('=');
-    tag.setAttribute(attr[0], attr[1]);
-  }
-
-  let className = whatSplit.join(' ');
-  tag.className = className;
-
-
-  if (content !== 'none') {
-    tag.innerHTML = content;
-  }
-
-
-  if (insert === 'start') {
-    block.prepend(tag);
-  } else if (insert === 'end') {
-    block.append(tag);
+  function createElement(where, what, content='none', attribute='none', insert='end') {
+    /* 
+    создать элемент: 
+      где-куда?
+      какой и с каким классом?
+      с каким атрибутом?
+      с каким содержимым?
+      в начало или конец?
+    */
+    let block = document.querySelector(where);
+  
+  
+    let whatSplit = what.split('.');
+  
+    let tag = whatSplit.shift();
+    tag = document.createElement(tag);
+    if (attribute !== 'none') {
+      let attr = attribute.split('=');
+      tag.setAttribute(attr[0], attr[1]);
+    }
+  
+    let className = whatSplit.join(' ');
+    tag.className = className;
+  
+  
+    if (content !== 'none') {
+      tag.innerHTML = content;
+    }
+  
+  
+    if (insert === 'start') {
+      block.prepend(tag);
+    } else if (insert === 'end') {
+      block.append(tag);
+    }
   }
 }
 
@@ -816,17 +816,48 @@ if ( document.querySelector('.checkbox-list') ) {
 
       checkboxListAll.forEach( (currentCheckboxList, index) => {
         // createElements(where, what, content='none', attribute='none', insert='end');
+        let text = currentCheckboxList.getAttribute('text');
 
-        createElements(currentCheckboxList, 'div.checkbox-list__body', content='none', attribute='none', insert='end');
-        createElements(`.checkbox-list__body=${index}`, 'div.checkbox-list__text', 'expandable checkbox list');
+        createElements(currentCheckboxList, 'div.checkbox-list__body');
+        createElements(`.checkbox-list__body=${index}`, 'div.checkbox-list__text', text);
         createElements(`.checkbox-list__body=${index}`, 'div.checkbox-list__icon.material-icons', 'expand_more');
+        createElements(currentCheckboxList, 'div.checkbox-list__items');
+
+        if ( currentCheckboxList.hasAttribute('show') ) {
+          currentCheckboxList.classList.toggle('checkbox-list_show');
+          currentCheckboxList.children[0].children[1].classList.toggle('checkbox-list__icon_rotate-180');
+          currentCheckboxList.children[1].classList.toggle('checkbox-list__items_show');
+        }
+
+        let items = convertToObject( currentCheckboxList.getAttribute('items') );
+        let key = Object.keys(items);
+
+        for (let i = 0; i < key.length; i++) {
+          createElements(`.checkbox-list__items=${index}`, 'label.checkbox__label.checkbox-list__item');
+          let imdx = document.querySelectorAll('.checkbox-list__item').length - 1;
+          createElements(`.checkbox-list__item=${imdx}`, 'input.checkbox__input', 'none', `type="checkbox", name="${key[i]}"`);
+          createElements(`.checkbox-list__item=${imdx}`, 'div.checkbox__box');
+          createElements(`.checkbox-list__item=${imdx}`, 'div.checkbox__text', `${items[key[i]]}`);
+        }
+
       })
     }
     events() {
+      let checkboxListAll = this.checkboxList;
 
+      checkboxListAll.forEach( checkboxList => {
+        checkboxList.onclick = (e) => {
+          if ( !e.target.classList.contains('checkbox-list__items') ) {
+            checkboxList.classList.toggle('checkbox-list_show');
+            checkboxList.children[0].children[1].classList.toggle('checkbox-list__icon_rotate-180');
+            checkboxList.children[1].classList.toggle('checkbox-list__items_show');
+          }
+        };
+      })
     }
   }
 
   let checkboxList = new CheckboxList();
   checkboxList.render();
+  checkboxList.events();
 }

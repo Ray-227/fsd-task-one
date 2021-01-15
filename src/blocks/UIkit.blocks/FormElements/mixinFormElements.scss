@@ -18,8 +18,16 @@
   border-radius: 4px;
 }
 
-@mixin FormElementToxin($width) {
-  width: $width;
+@mixin FormElementToxin($width: inherit) {
+
+  @if $width == 'inherit' {
+
+    width: inherit;
+
+  } @else {
+    width: $width;
+  }
+
   height: 44px;
   background: $White;
   border: 1px solid $Dark25;

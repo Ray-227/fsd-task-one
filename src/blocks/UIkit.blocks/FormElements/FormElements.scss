@@ -39,7 +39,7 @@
 
 /* DROPDOWN */
 .dropdown {
-  @include FormElementToxin(320px);
+  @include FormElementToxin;
 }
 
 .dropdown_hidden {
@@ -883,6 +883,8 @@
   justify-content: space-between;
   align-items: center;
   height: 44px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .checkbox-list__text {
@@ -894,6 +896,7 @@
 
 .checkbox-list__icon {
   color: $Dark50;
+  transition: transform ease 300ms;
 }
 
 .checkbox-list__icon_rotate-180 {
@@ -901,11 +904,49 @@
 }
 
 .checkbox-list__items {
+  display: none;
+}
+
+.checkbox-list__items_show {
   display: block;
 }
 
-.checkbox-list__item {
+// .checkbox-list__item { }
 
+
+// advantage
+.advantage {
+  width: 260px;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: solid 1px $Dark10;
+  padding-bottom: 15px;
+}
+
+.advantage__icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  margin-right: 10px;
+  @include PurpleGradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.advantage__info {
+  
+}
+
+.advantage__title {
+  @include MontserratBold(14px, 24px);
+  color: $Dark75;
+}
+
+.advantage__text {
+  @include MontserratNormal(14px, 24px);
+  color: $Dark50;
 }
 
 

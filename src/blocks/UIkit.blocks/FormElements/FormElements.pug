@@ -186,19 +186,20 @@ main
       .col-4
         //- DROPDOWN
         //- У блока .dropdown, есть атрибут info (генерируется js), он обозначает какие значение и в каком кол-во выбрал пользователь.
-        .input-container.width-320.mb-20
+        .input-container.width-260.mb-20
           label().input-container__label
             h3.input-container__title Dropdown
             p.input-container__info default
           .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат")
-        .input-container.width-320.mb-40
+        .input-container.width-260.mb-40
           label().input-container__label
             h3.input-container__title Dropdown
             p.input-container__info expanded
           .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат", show)
         
         //- expandable checkbox list
-        .checkbox-list
+        .checkbox-list.mb-40(text="expandable checkbox list", items="one: one, two: two, three: three, four: foru, five: five")
+        .checkbox-list.mb-40(text="expandable checkbox list", items="Breakfast: Завтрак, Desk: Письменный стол, Feeding chair: Стул для кормления, Crib: Кроватка, tv: Телевизор, shampoo: Шампунь", show)
       .col-4.mt-md-4.mt-lg-0
         .input-container.width-320.mb-20
           label().input-container__label
@@ -211,3 +212,16 @@ main
             h3.input-container__title Dropdown
             p.input-container__info expanded
           .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", show, buttons="true")
+      .col-12.mt-md-4.mt-lg-0
+        //- advantage
+        .advantage.mb-20
+          .advantage__icon.material-icons insert_emoticon
+          .advantage__info 
+            .advantage__title Комфорт
+            .advantage__text Шумопоглощающие стены
+        .advantage
+          .advantage__icon.material-icons location_city
+          .advantage__info 
+            .advantage__title Удобство
+            .advantage__text Окно в каждой из спален
+
