@@ -1,0 +1,68 @@
+.rate__fieldset {
+  width: calc(24px * 5);
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='-2 -2 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 13.4219L13.75 15.6719L12.7656 11.4062L16.0938 8.5L11.6875 8.125L10 4.09375L8.3125 8.125L3.90625 8.5L7.23438 11.4062L6.25 15.6719L10 13.4219ZM19.9844 7.23438L14.5469 11.9688L16.1875 19L10 15.25L3.8125 19L5.45312 11.9688L0.015625 7.23438L7.1875 6.625L10 0.015625L12.8125 6.625L19.9844 7.23438Z' fill='url(%23paint0_linear)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='10' y1='-2' x2='10' y2='22' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23BC9CFF'/%3E%3Cstop offset='1' stop-color='%238BA4F9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+  background-size: 24px 24px;
+  background-repeat: repeat-x;
+}
+
+.rate__input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.rate__star {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top:0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background-size: 24px 24px;
+  font-size: inherit;
+  background-repeat: repeat-x;
+}
+
+.rate__star:focus {
+  outline: none;
+}
+
+.rate__star:checked, .rate__star:hover {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='-2 -2 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 15.25L3.8125 19L5.45312 11.9688L0.015625 7.23438L7.1875 6.625L10 0.015625L12.8125 6.625L19.9844 7.23438L14.5469 11.9688L16.1875 19L10 15.25Z' fill='url(%23paint0_linear)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='10' y1='-2' x2='10' y2='22' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23BC9CFF'/%3E%3Cstop offset='1' stop-color='%238BA4F9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+  outline: none;
+}
+
+.rate__star:hover ~ .rate__star {
+  background-image: none;
+}
+
+.rate__star:nth-of-type(1) {
+  z-index: 5;
+  width: 24px;
+}
+
+.rate__star:nth-of-type(2) {
+  z-index: 4;
+  width: calc(24px * 2);
+}
+
+.rate__star:nth-of-type(3) {
+  z-index: 3;
+  width: calc(24px * 3);
+}
+
+.rate__star:nth-of-type(4) {
+  z-index: 2;
+  width: calc(24px * 4);
+}
+
+.rate__star:nth-of-type(5) {
+  z-index: 1;
+  width: calc(24px * 5);
+}

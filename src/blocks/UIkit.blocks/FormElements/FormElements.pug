@@ -1,19 +1,15 @@
+include /blocks/UIkit.blocks/FormElements/mixinFormElements.pug
 main
   .container.mb-100
     .row.flex-column.flex-lg-row
       .col-4
         //- Email Field
-        .input-container.width-320.mb-20
-          label(for="email").input-container__label
-            h3.input-container__title Email Field
-            p.input-container__info default
-          input(type="email", name="email", placeholder="Email", id="email").input-email
-        
+        +FormElemContaner({title: "Email Field", info: "default"}, "width-320 mb-20")
+          include /blocks/common.blocks/form.elements/email-field/email-field.pug
+
         //- Password Field
-        .input-container.width-320.mb-20
-          label.input-container__label
-            h3.input-container__title Password Field
-          input(type="password", name="password", placeholder="Пароль" required).input-password
+        +FormElemContaner({title: "Password Field"}, "width-320 mb-20")
+          include /blocks/common.blocks/form.elements/password-field/password-field.pug
         
         //- Text Field
         .input-container.width-320.mb-20
@@ -69,23 +65,12 @@ main
             input(type="submit" value="").subscription__submit
             .material-icons.md-purple.subscription__icon arrow_forward
       .col-4.mt-md-4.mt-lg-0
+      
         //- Checkbox Buttons
         .input-container.width-220.mb-40
           label.input-container__label
             h3.input-container__title.mb-15 Checkbox Buttons
-          fieldset.checkbox__fieldset
-            label.checkbox__label
-              input(type="checkbox", name="smoke").checkbox__input
-              .checkbox__box
-              .checkbox__text Можно курить
-            label.checkbox__label
-              input(type="checkbox", name="pet").checkbox__input
-              .checkbox__box
-              .checkbox__text Можно с питомцами
-            label.checkbox__label
-              input(type="checkbox", name="guests").checkbox__input
-              .checkbox__box
-              .checkbox__text Можно пригласить гостей (до 10 человек)
+          include /blocks/common.blocks/form.elements/checkbox-buttons/checkbox-buttons.pug
 
         //- Radio Buttons
         .input-container.width-220.mb-40
@@ -123,10 +108,11 @@ main
               input(type="checkbox", name="like_demo").like__input
               .like__heart
                 .like__count 2
-            label.like__label
-              input(type="checkbox", name="like", checked).like__input
-              .like__heart
-                .like__count 12
+            .like-button
+              label.like__label
+                input(type="checkbox", name="like").like__input
+                .like__heart
+                  .like__count(heartCount="12") 12
 
         //- Rate button
         .input-container.width-260
@@ -196,32 +182,43 @@ main
             h3.input-container__title Dropdown
             p.input-container__info expanded
           .dropdown(options="bedroom: спальни, bed: кровати, bathroom: ванные комнаты", text="Сколько комнат", show)
-        
+      .col-4.mt-md-4.mt-lg-0
+        .input-container.width-320.mb-20
+          label().input-container__label
+            h3.input-container__title Dropdown
+            p.input-container__info expanded
+          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", show, buttons="true")
+      .col-4.mt-md-4.mt-lg-0
+        .input-container.width-320.mb-20
+          label().input-container__label
+            h3.input-container__title Dropdown
+            p.input-container__info expanded
+          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", show, buttons="true")
+    
+    .row.flex-column.flex-lg-row
+      .col-4.mt-md-4.mt-lg-0
         //- expandable checkbox list
         .checkbox-list.mb-40(text="expandable checkbox list", items="one: one, two: two, three: three, four: foru, five: five")
         .checkbox-list.mb-40(text="expandable checkbox list", items="Breakfast: Завтрак, Desk: Письменный стол, Feeding chair: Стул для кормления, Crib: Кроватка, tv: Телевизор, shampoo: Шампунь", show)
       .col-4.mt-md-4.mt-lg-0
-        .input-container.width-320.mb-20
-          label().input-container__label
-            h3.input-container__title Dropdown
-            p.input-container__info expanded
-          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", show, buttons="true")
+        //- Rich Checkbox Buttons
+        +FormElemContaner({title: "Rich Checkbox Buttons"}, "width-260", "mb-15")
+          include /blocks/common.blocks/form.elements/rich-checkbox-buttons/rich-checkbox-buttons.pug
       .col-4.mt-md-4.mt-lg-0
-        .input-container.width-320.mb-20
-          label().input-container__label
-            h3.input-container__title Dropdown
-            p.input-container__info expanded
-          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", show, buttons="true")
-      .col-12.mt-md-4.mt-lg-0
+        //- bullet list
+        +FormElemContaner({title: "bullet list"}, "width-260", "mb-15")
+          include /blocks/common.blocks/form.elements/bullet-list/bullet-list.pug
+          +bulletList("Нельзя с питомцами")
+          +bulletList("Без вечеринок и мероприятий")
+          +bulletList("Время прибытия — после 13:00, а выезд до 12:00")
+      .col-4.mt-md-4.mt-lg-0
         //- advantage
-        .advantage.mb-20
-          .advantage__icon.material-icons insert_emoticon
-          .advantage__info 
-            .advantage__title Комфорт
-            .advantage__text Шумопоглощающие стены
-        .advantage
-          .advantage__icon.material-icons location_city
-          .advantage__info 
-            .advantage__title Удобство
-            .advantage__text Окно в каждой из спален
+        include /blocks/common.blocks/form.elements/advantage/advantage.pug 
+        +advantage({icon: "insert_emoticon", title: "Комфорт", text: "Шумопоглощающие стены"}, "mb-20")
+        +advantage({icon: "location_city", title: "Удобство", text: "Окно в каждой из спален"})
+      .col-8.mt-md-4.mt-lg-0
+        //- comment
+        include /blocks/common.blocks/form.elements/comment/comment.pug
+
+
 

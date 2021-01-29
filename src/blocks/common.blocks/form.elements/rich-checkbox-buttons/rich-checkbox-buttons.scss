@@ -1,0 +1,20 @@
+//- Checkbox Buttons
+@import "/blocks/common.blocks/form.elements/checkbox-buttons/checkbox-buttons.scss";
+
+.rich-checkbox__fieldset {
+  width: 260px;
+}
+
+.rich-checkbox__info {
+  width: 230px;
+  margin-left: 30px;
+}
+.rich-checkbox__title {
+  @include MontserratBold(14px, 18px);
+  color: $Dark75;
+  margin-bottom: 5px;
+}
+.rich-checkbox__text {
+  @include MontserratNormal(12px, 14px);
+  color: $Dark50;
+}

@@ -1,0 +1,43 @@
+.checkbox-list {
+  width: 240px;
+  height: 44px;
+}
+
+.checkbox-list_show {
+  height: auto;
+}
+
+.checkbox-list__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.checkbox-list__text {
+  @include MontserratBold(12px, 14px);
+  color: $Dark100;
+  text-transform: uppercase;
+
+}
+
+.checkbox-list__icon {
+  color: $Dark50;
+  transition: transform ease 300ms;
+}
+
+.checkbox-list__icon_rotate-180 {
+  transform: rotate(180deg);
+}
+
+.checkbox-list__items {
+  display: none;
+}
+
+.checkbox-list__items_show {
+  display: block;
+}
+
+// .checkbox-list__item { }

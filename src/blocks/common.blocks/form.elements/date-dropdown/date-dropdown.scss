@@ -1,0 +1,30 @@
+.input-container-date-dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-date-dropdown {
+  width: 150px;
+  position: relative;
+  &:hover .input-date-masked {
+    border: 1px solid $Dark50;
+  }
+}
+
+.input-date-dropdown__icon {
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform ease 300ms;
+  user-select: none;
+  color: $Dark75;
+}
+
+.input-date-dropdown__icon_rotate-180 {
+  transform: rotate(180deg);
+}

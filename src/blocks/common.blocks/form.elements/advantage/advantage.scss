@@ -1,0 +1,31 @@
+.advantage {
+  width: 260px;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: solid 1px $Dark10;
+  padding-bottom: 15px;
+}
+
+.advantage__icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  margin-right: 10px;
+  @include PurpleGradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// .advantage__info { }
+
+.advantage__title {
+  @include MontserratBold(14px, 24px);
+  color: $Dark75;
+}
+
+.advantage__text {
+  @include MontserratNormal(14px, 24px);
+  color: $Dark50;
+}

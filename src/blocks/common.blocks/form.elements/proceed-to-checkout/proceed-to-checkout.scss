@@ -1,0 +1,45 @@
+.proceed-to-checkout {
+  position: relative;
+  width: 320px;
+  height: 45px;
+  display: flex;
+}
+
+.proceed-to-checkout__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $White;
+  width: 45px;
+  height:45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.proceed-to-checkout__input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+
+  @include MontserratBold(12px, 14px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $White;
+
+  width: 320px;
+  height: 45px;
+  border-radius: 22px;
+  cursor: pointer;
+
+  @include PurpleGradient();
+  transition: opacity ease 200ms;
+}
+
+.proceed-to-checkout__input:hover {
+  opacity: 0.8;
+}

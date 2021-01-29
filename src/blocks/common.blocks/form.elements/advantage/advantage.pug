@@ -1,0 +1,13 @@
+mixin advantage(data, userClass)
+  if userClass
+    .advantage(class=userClass)
+      .advantage__icon.material-icons= data.icon
+      .advantage__info 
+        .advantage__title= data.title
+        .advantage__text= data.text
+  else
+    .advantage
+      .advantage__icon.material-icons= data.icon
+      .advantage__info 
+        .advantage__title= data.title
+        .advantage__text= data.text

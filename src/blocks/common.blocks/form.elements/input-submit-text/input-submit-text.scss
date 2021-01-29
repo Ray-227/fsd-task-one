@@ -1,0 +1,19 @@
+.input-submit-text {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  
+  @include MontserratBold(12px, 14px);
+  text-transform: uppercase;
+  color: $Purple;
+  cursor: pointer;
+
+  transition: opacity ease 200ms;
+}
+
+.input-submit-text:hover {
+  opacity: 0.5;
+}

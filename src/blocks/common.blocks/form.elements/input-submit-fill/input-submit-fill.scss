@@ -1,0 +1,25 @@
+.input-submit-fill {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+
+  @include MontserratBold(12px, 14px);
+  text-transform: uppercase;
+  color: $White;
+
+  width: 100px;
+  height: 45px;
+  border-radius: 22px;
+  cursor: pointer;
+
+  @include PurpleGradient();
+
+  transition: opacity ease 200ms;
+}
+
+.input-submit-fill:hover {
+  opacity: 0.5;
+}

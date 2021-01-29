@@ -28,17 +28,6 @@
     width: $width;
   }
 
-  height: 44px;
-  background: $White;
-  border: 1px solid $Dark25;
-  border-radius: 4px;
-  padding-left: 15px;
-  outline: none;
-  @include MontserratNormal(14px, 18px);
-  color: $Dark75;
-  
-  &:focus, &:hover {
-    border: 1px solid $Dark50;
-  }
+
 }
 

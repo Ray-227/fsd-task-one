@@ -1,0 +1,8 @@
+mixin FormElemContaner(data, optionClass, optionLabelClass)
+  .input-container(class=optionClass)
+    label.input-container__label(class=optionLabelClass)
+      h3.input-container__title= data.title
+      if data.info
+      p.input-container__info= data.info
+    if block
+    block

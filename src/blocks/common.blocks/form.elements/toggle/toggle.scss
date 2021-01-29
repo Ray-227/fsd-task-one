@@ -1,0 +1,44 @@
+.toggle__label {
+  display: flex;
+  width: 260px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.toggle__input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.toggle__input:checked + .toggle__point {
+  border: 1px solid $Purple;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='13' viewBox='0 0 12 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect y='0.557617' width='12' height='12' rx='6' fill='url(%23paint0_linear)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='6' y1='0.557617' x2='6' y2='12.5576' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23BC9CFF'/%3E%3Cstop offset='1' stop-color='%238BA4F9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: calc(40px - 18px) center;
+}
+
+.toggle__input:focus + .toggle__point, .toggle__input:hover +.toggle__point{
+  border: 1px solid $Purple;
+}
+
+.toggle__point {
+  width: 40px;
+  height: 20px;
+  background: $White;
+  /* Dark 25% */
+  border: 1px solid $Dark25;
+  border-radius: 10px;
+
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='13' viewBox='0 0 12 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect y='0.557617' width='12' height='12' rx='6' fill='%231F2041' fill-opacity='0.25'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: 4px center;
+
+  transition: background-position ease 250ms;
+}
+
+.toggle__text {
+  @include MontserratNormal(14px, 18px);
+  color: $Dark50;
+  margin-left: 10px;
+}

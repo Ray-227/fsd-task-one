@@ -1,0 +1,24 @@
+.bullet-list {
+  min-width: 260px;
+  max-width: 320px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.bullet-list__point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: $Dark25;
+  top: 7px;
+  left: 0;
+}
+
+.bullet-list__text {
+  margin-left: 20px;
+  color: $Dark75;
+  @include MontserratNormal(14px, 24px);
+}

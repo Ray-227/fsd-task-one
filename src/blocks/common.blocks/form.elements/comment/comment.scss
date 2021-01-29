@@ -1,0 +1,48 @@
+.comment {
+  min-width: 320px;
+  max-width: 710px;
+}
+
+  .comment__header {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+    .comment__photo {
+      width: 48px;
+      height: 48px;
+      background: $Dark50;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .comment__info {
+
+    }
+
+      .comment__name {
+        @include MontserratBold(14px, 24px);
+        color: $Dark75;
+      }
+
+      .comment__date {
+        @include MontserratNormal(14px, 24px);
+        color: $Dark75;
+      }
+
+  .comment__body {
+    display: flex;
+  }
+
+    .comment__heart {
+      display: flex;
+      justify-content: center;
+      min-width: 48px;
+      max-width: 48px;
+      margin-right: 10px;
+    }
+
+    .comment__text {
+      @include MontserratNormal(14px, 24px);
+      color: $Dark75;
+    }

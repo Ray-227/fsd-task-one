@@ -73,7 +73,18 @@ function convertToObject(options) {
   return obj;
 }
 
-if ( document.querySelector('.dropdown') ) {
+function isElement(elementName) {
+  let element = document.querySelector( String(elementName) );
+
+  if (element) {
+    return true;
+  } else {
+    console.log(`%c Ошибка: ${elementName} не найден.`, 'color: #ae0000; background: #ffebeb; font-size: 14px;')
+    return false;
+  }
+}
+
+if ( isElement('.dropdown') ) {
 
   /*
   .dropdown(options="adult: Взрослые, child: дети, baby: младенцы", text="Сколько гостей")
@@ -285,7 +296,7 @@ if ( document.querySelector('.dropdown') ) {
   dropDown.events();
 }
 
-if ( document.querySelector('.input-date-masked') ) {
+if ( isElement('.input-date-masked') ) {
 
   class MaskedDate {
     constructor() {
@@ -354,7 +365,7 @@ if ( document.querySelector('.input-date-masked') ) {
 
 }
 
-if ( document.querySelector('.input-date-dropdown') ) {
+if ( isElement('.input-date-dropdown') ) {
   let inputDateDropDown = document.querySelectorAll('.input-date-dropdown');
 
   inputDateDropDown.forEach( (item) => {
@@ -364,7 +375,7 @@ if ( document.querySelector('.input-date-dropdown') ) {
   });
 }
 
-if ( document.querySelector('.range-slider__input') ) {
+if ( isElement('.range-slider__input') ) {
 
   // ?: Событие input генерируется при каждом изменений
   // ?: Событие change генерируется при потере фокуса, самый момент для записи json или localStorage
@@ -619,7 +630,7 @@ if ( document.querySelector('.range-slider__input') ) {
 
 }
 
-if ( document.querySelector('.pagination') ) {
+if ( isElement('.pagination') ) {
 
   /*
   .pagination
@@ -794,7 +805,7 @@ if ( document.querySelector('.pagination') ) {
   }
 }
 
-if ( document.querySelector('.checkbox-list') ) {
+if ( isElement('.checkbox-list') ) {
   /*
   .checkbox-list.checkbox-list_show
   .checkbox-list__body
@@ -861,3 +872,10 @@ if ( document.querySelector('.checkbox-list') ) {
   checkboxList.render();
   checkboxList.events();
 }
+
+if ( isElement('.like-button') ) {
+  const {likeButton} = require('@/blocks/common.blocks/form.elements/like-button/like-button.js');
+}
+
+
+

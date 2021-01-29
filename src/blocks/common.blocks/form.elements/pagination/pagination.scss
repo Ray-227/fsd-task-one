@@ -1,0 +1,88 @@
+.pagination {
+  width: 240px;
+}
+
+.pagination__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.pagination_hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.pagination__item {
+  width: 40px;
+  height: 40px;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $Dark50;
+  cursor: pointer;
+  overflow: hidden;
+  @include MontserratNormal(12px, 14px);
+}
+
+.pagination__item_active {
+  position: relative;
+  color: $White;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__item_active:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+  @include PurpleGradient;
+  animation-duration: 200ms;
+  animation-name: pagination__item_active-anim;
+  z-index: -1;
+}
+
+@keyframes pagination__item_active-anim {
+  from {
+    left: -40px;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+.pagination__back, .pagination__next {
+  width: 40px;
+  height: 40px;
+  @include GreenGradient;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $White;
+  cursor: pointer;
+}
+
+.pagination__text {
+  width: 100%;
+  color: $Dark75;
+  @include MontserratNormal(14px, 24px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
