@@ -1,0 +1,5 @@
+mixin expandable-checkbox-list(data, isShow)
+  if isShow
+    .checkbox-list(text=data.text, items=data.items, show)
+  else 
+    .checkbox-list(text=data.text, items=data.items)

@@ -1,3 +1,5 @@
+import {isElement} from '@/@modules/easyelement/easyelement.js';
+
 class LikeButton {
   constructor() {
     this.event();
@@ -28,7 +30,11 @@ class LikeButton {
   }
 }
 
-export let likeButton = new LikeButton();
+export let likeButton = isElement('.like-button') ? new LikeButton() : '';
+
+
+
+
 
 
 

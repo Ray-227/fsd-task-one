@@ -1,0 +1,5 @@
+mixin dropdown(data)
+  if data.show
+    .dropdown(options=data.options, text=data.text, buttons=data.buttons, show)
+  else 
+    .dropdown(options=data.options, text=data.text, buttons=data.buttons)

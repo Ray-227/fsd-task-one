@@ -16,56 +16,40 @@ main
           label().input-container__label
             h3.input-container__title Text Field
             p.input-container__info Hover / Focus
-          input(type="text", value="This is pretty awesome", placeholder="Enter text").input-text
-        
+          include /blocks/common.blocks/form.elements/text-field/text-field.pug
+
         //- DROPDOWN
         //- У блока .dropdown, есть атрибут info (генерируется js), он обозначает какие значение и в каком кол-во выбрал пользователь.
         .input-container.width-320.mb-20
           label().input-container__label
             h3.input-container__title Dropdown
-            //- options="name: text, name: text, name: text"
-          .dropdown(options="adult: взрослые, child: дети, baby: младенцы", text="Сколько гостей", buttons="true")
+          include /blocks/common.blocks/form.elements/dropdown/dropdown.pug
+          +dropdown({options:"adult: взрослые, child: дети, baby: младенцы", text:"Сколько гостей", buttons: "true", show: "true"})
 
         //- Masked Date Field
         .input-container.width-320.mb-40
           label().input-container__label
             h3.input-container__title Masked Date Field
-          input(type="text", placeholder="ДД.ММ.ГГГГ").input-date-masked
+          include /blocks/common.blocks/form.elements/masked-date-field/masked-date-field.pug
 
         //- Date dropdown
         .input-container-date-dropdown.width-320.mb-40
-          .input-container.width-150
-            label.input-container__label
-              h3.input-container__title date Dropdown
-            .input-date-dropdown
-              input(type="text", placeholder="ДД.ММ.ГГГГ").input-date-masked.width-full
-              span.material-icons.input-date-dropdown__icon expand_more
-          .input-container.width-150
-            label.input-container__label
-              h3.input-container__title date Dropdown
-            .input-date-dropdown
-              input(type="text", placeholder="ДД.ММ.ГГГГ").input-date-masked.width-full
-              span.material-icons.input-date-dropdown__icon expand_more
+          include /blocks/common.blocks/form.elements/date-dropdown/date-dropdown.pug
+          +input-date-dropdown("width-150")
+          +input-date-dropdown("width-150")
 
         //- filter date dropdown
         .input-container.width-260.mb-40
           label.input-container__label
             h3.input-container__title filter date dropdown
-          .filter-date-dropdown(tabindex="0")
-            .filter-date-dropdown__body
-              p.filter-date-dropdown__text Период пробывания
-              span.material-icons.filter-date-dropdown__icon expand_more
+          include /blocks/common.blocks/form.elements/filter-date-dropdown/filter-date-dropdown.pug
 
         //- subscription email form
         .input-container.width-260
           label.input-container__label
             h3.input-container__title subscription email form
-          form(action="" method="post" enctype="text/plain").subscription
-            input(type="email", name="email", placeholder="Email", id="email").input-email.width-260          
-            input(type="submit" value="").subscription__submit
-            .material-icons.md-purple.subscription__icon arrow_forward
+          include /blocks/common.blocks/form.elements/subscription-email-form/subscription-email-form.pug
       .col-4.mt-md-4.mt-lg-0
-      
         //- Checkbox Buttons
         .input-container.width-220.mb-40
           label.input-container__label
@@ -76,24 +60,14 @@ main
         .input-container.width-220.mb-40
           label.input-container__label
             h3.input-container__title.mb-15 Radio Buttons
-          fieldset.radio__fieldset
-            label.radio__label
-              input(type="radio", name="gender", checked).radio__input
-              .radio__point
-              .radio__text Мужчина
-            label.radio__label
-              input(type="radio", name="gender").radio__input
-              .radio__point
-              .radio__text Женщина
+          include /blocks/common.blocks/form.elements/radio-buttons/radio-buttons.pug
 
         //- Toggle
         .input-container.width-220.mb-40
           label.input-container__label
             h3.input-container__title.mb-15 Toggle
-          label.toggle__label.mb-15
-            input(type="checkbox", name="offers-demo").toggle__input
-            .toggle__point
-            .toggle__text Получать спецпредложения
+          include /blocks/common.blocks/form.elements/toggle/toggle.pug
+          +toggle("mb-20")
           label.toggle__label
             input(type="checkbox", name="offers", checked).toggle__input
             .toggle__point
@@ -120,12 +94,7 @@ main
             h3.input-container__title.mb-15 Rate button
           .d-flex.justify-content-between
             //- Rate block
-            fieldset.rate__fieldset
-              input(type="radio", name="rate", value="1" aria-label="Ужасно").rate__input.rate__star
-              input(type="radio", name="rate", value="2" aria-label="Плохо").rate__input.rate__star
-              input(type="radio", name="rate", value="3" aria-label="Средне").rate__input.rate__star
-              input(type="radio", name="rate", value="4" aria-label="Хорошо").rate__input.rate__star
-              input(type="radio", name="rate", value="5" aria-label="Отлично").rate__input.rate__star
+            include /blocks/common.blocks/form.elements/rate-button/rate-button.pug
             //- Rate Demo (don't use)
             fieldset.rate__fieldset
               input(type="radio", name="rate-demo", value="1" aria-label="Ужасно").rate__input.rate__star
@@ -136,36 +105,33 @@ main
       .col-4.mt-md-4.mt-lg-0
         //- Range Slider
         .input-container.width-260.mb-40
-          label(for="email").input-container__label.mb-20
+          label.input-container__label.mb-20
             h3.input-container__title Range Slider
             p.input-container__info.range-slider-output
-          .range-slider
-            input(type="range" name="range-slider").range-slider__input
+          include /blocks/common.blocks/form.elements/range-slider/range-slider.pug
 
         //- Buttons
         .input-container.width-220.mb-40
           label.input-container__label
             h3.input-container__title.mb-15 Buttons
           .d-flex.justify-content-between.mb-30
-            input(type="submit", value="Click Me").input-submit-fill
+            include /blocks/common.blocks/form.elements/input-submit-fill/input-submit-fill.pug
             input(type="submit", value="Click Me").input-submit-fill.input-submit-fill_hover
           .d-flex.justify-content-between.mb-30
-            .input-submit-outline
-              input(type="submit", value="Click Me").input-submit-outline__input
+            include /blocks/common.blocks/form.elements/input-submit-outline/input-submit-outline.pug
             .input-submit-outline.input-submit-outline_hover
               input(type="submit", value="Click Me").input-submit-outline__input
           .d-flex.mb-30
-            input(type="submit", value="Click Me").input-submit-text
+            include /blocks/common.blocks/form.elements/input-submit-text/input-submit-text.pug
             input(type="submit", value="Click Me").input-submit-text.input-submit-text_hover.ml-4
-          label.proceed-to-checkout
-            input(type="submit", value="перейти к оплате").proceed-to-checkout__input
-            span.material-icons.proceed-to-checkout__icon arrow_forward
+          include /blocks/common.blocks/form.elements/proceed-to-checkout/proceed-to-checkout.pug
 
         //- pagination
         .input-container.width-240.mb-40
           label.input-container__label
             h3.input-container__title.mb-15 pagination
-          .pagination(pages="15")
+          include /blocks/common.blocks/form.elements/pagination/pagination.pug
+          +pagination("15")
 
   .container.mb-100
     .row.flex-column.flex-lg-row
@@ -198,8 +164,11 @@ main
     .row.flex-column.flex-lg-row
       .col-4.mt-md-4.mt-lg-0
         //- expandable checkbox list
-        .checkbox-list.mb-40(text="expandable checkbox list", items="one: one, two: two, three: three, four: foru, five: five")
-        .checkbox-list.mb-40(text="expandable checkbox list", items="Breakfast: Завтрак, Desk: Письменный стол, Feeding chair: Стул для кормления, Crib: Кроватка, tv: Телевизор, shampoo: Шампунь", show)
+        .mb-40
+          include /blocks/common.blocks/form.elements/expandable-checkbox-list/expandable-checkbox-list.pug
+          +expandable-checkbox-list({text:"expandable checkbox list", items:"one: one, two: two, three: three, four: foru, five: five"})
+        .mb-40
+          +expandable-checkbox-list({text:"expandable checkbox list", items:"Breakfast: Завтрак, Desk: Письменный стол, Feeding chair: Стул для кормления, Crib: Кроватка, tv: Телевизор, shampoo: Шампунь"}, "show")
       .col-4.mt-md-4.mt-lg-0
         //- Rich Checkbox Buttons
         +FormElemContaner({title: "Rich Checkbox Buttons"}, "width-260", "mb-15")
@@ -219,6 +188,7 @@ main
       .col-8.mt-md-4.mt-lg-0
         //- comment
         include /blocks/common.blocks/form.elements/comment/comment.pug
+        +comment({name:"Мурад Сарафанов", date:"5 дней назад", text:"Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей."})
 
 
 

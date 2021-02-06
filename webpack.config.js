@@ -96,11 +96,11 @@ const plugins = () => {
       }
     }),
     ...PAGES.map(page => new HTMLWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
-      filename: `pages/${page.replace(/\.pug/,'.html')}`,
-      inject: true,
-      minify: isProd
-    })),
+          template: `${PAGES_DIR}/${page}`,
+          filename: `pages/${page.replace(/\.pug/,'.html')}`,
+          inject: true,
+          minify: isProd
+        })),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: fileName('style', 'css'),
