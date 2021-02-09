@@ -34,11 +34,13 @@
 .calendar-container__prev {
   display: inherit;
   cursor: pointer;
+  user-select: none;
 }
 
 .calendar-container__next {
   display: inherit;
   cursor: pointer;
+  user-select: none;
 }
 
 .calendar-container__day {
@@ -54,6 +56,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .calendar-container__date_currentDate {
@@ -70,15 +74,43 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
 }
 
-.calendar-container__clear {
+.calendar-container__clear, .calendar-container__accept{
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  
+  @include MontserratBold(12px, 14px);
+  text-transform: uppercase;
+  color: $Purple;
+  cursor: pointer;
 
+  transition: opacity ease 200ms;
 }
-.calendar-container__accept {
 
+.calendar-container__clear:hover, .calendar-container__accept:hover {
+  opacity: 0.5;
 }
 
 .calendar_error {
   color: red;
+}
+
+._selected-date {
+  @include PurpleGradient;
+  border-radius: 44px;
+  color: white;
+}
+
+._selected-date-band {
+  @include PurpleGradient;
+  border-radius: 0px;
+  color: $Dark50;
+  font-weight: normal;
+  opacity: 0.25;
 }
