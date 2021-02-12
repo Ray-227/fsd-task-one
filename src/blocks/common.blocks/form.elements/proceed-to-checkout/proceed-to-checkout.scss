@@ -1,6 +1,7 @@
 .proceed-to-checkout {
   position: relative;
-  width: 320px;
+  max-width: 320px;
+  min-width: 230px;
   height: 45px;
   display: flex;
 }

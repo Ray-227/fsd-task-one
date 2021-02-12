@@ -1,5 +1,5 @@
-mixin toggle(mb)
-  label.toggle__label(class=mb)
+mixin toggle(text)
+  label.toggle__label
     input(type="checkbox", name="offers-demo").toggle__input
     .toggle__point
-    .toggle__text Получать спецпредложения
+    .toggle__text=text

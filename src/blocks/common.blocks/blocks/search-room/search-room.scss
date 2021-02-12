@@ -1,0 +1,10 @@
+.search-room {
+  @include  CardsBlock(380px);
+}
+
+.search-room-title {
+  color: $Dark100;
+  @include MontserratBold(24px, 30px);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,14 @@
+include /blocks/common.blocks/form.elements/date-dropdown/date-dropdown.pug
+include /blocks/common.blocks/form.elements/dropdown/dropdown.pug
+include /blocks/common.blocks/form.elements/proceed-to-checkout/proceed-to-checkout.pug
+
+form(action="", method="post").search-room
+  .search-room-title Найдём номера под ваши пожелания
+  .d-flex.justify-content-between.mb-20
+    +FormElemContaner({title: "прибытие"}, "width-150")
+      +input-date-dropdown("width-150")
+    +FormElemContaner({title: "выезд"}, "width-150")
+      +input-date-dropdown("width-150")
+  +FormElemContaner({title: "Гости"}, "width-320 mb-30")
+    +dropdown({options:"adult: взрослые, child: дети, baby: младенцы", text:"Сколько гостей", buttons: "true"})
+  +proceed-to-checkout("подобрать номер")

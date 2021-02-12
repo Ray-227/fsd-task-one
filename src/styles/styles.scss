@@ -8,6 +8,143 @@
 @import "/blocks/UIkit.blocks/Colors&Type/Colors&Type.scss";
 @import "/blocks/UIkit.blocks/FormElements/FormElements.scss";
 
+// =========> src/blocks/common.blocks/form.elements
+// email field
+@import "/blocks/common.blocks/form.elements/email-field/email-field.scss";
+
+// password field
+@import "/blocks/common.blocks/form.elements/password-field/password-field.scss";
+
+// text field
+@import "/blocks/common.blocks/form.elements/text-field/text-field.scss";
+
+// dropdown
+@import "/blocks/common.blocks/form.elements/dropdown/dropdown.scss";
+
+// masked-date-field
+@import "/blocks/common.blocks/form.elements/masked-date-field/masked-date-field.scss";
+
+// date-dropdown
+@import "/blocks/common.blocks/form.elements/date-dropdown/date-dropdown.scss";
+
+// Filter date dropdown
+@import "/blocks/common.blocks/form.elements/filter-date-dropdown/filter-date-dropdown.scss";
+
+// subscription-email-form
+@import "/blocks/common.blocks/form.elements/subscription-email-form/subscription-email-form.scss";
+
+//- checkbox-buttons
+@import "/blocks/common.blocks/form.elements/checkbox-buttons/checkbox-buttons.scss";
+
+// radio-buttons
+@import "/blocks/common.blocks/form.elements/radio-buttons/radio-buttons.scss";
+
+// toggle
+@import "/blocks/common.blocks/form.elements/toggle/toggle.scss";
+
+// Like button
+@import "/blocks/common.blocks/form.elements/like-button/like-button.scss";
+
+// Rate Button
+@import "/blocks/common.blocks/form.elements/rate-button/rate-button.scss";
+
+// input-submit-fill
+@import "/blocks/common.blocks/form.elements/input-submit-fill/input-submit-fill.scss";
+
+// input-submit-outline
+@import "/blocks/common.blocks/form.elements/input-submit-outline/input-submit-outline.scss";
+
+// input-submit-text
+@import "/blocks/common.blocks/form.elements/input-submit-text/input-submit-text.scss";
+
+// proceed-to-checkout
+@import "/blocks/common.blocks/form.elements/proceed-to-checkout/proceed-to-checkout.scss";
+
+// range-slider
+@import "/blocks/common.blocks/form.elements/range-slider/range-slider.scss";
+
+// pagination
+@import "/blocks/common.blocks/form.elements/pagination/pagination.scss";
+
+// expandable-checkbox-list
+@import "/blocks/common.blocks/form.elements/expandable-checkbox-list/expandable-checkbox-list.scss";
+
+// Rich Checkbox Buttons
+@import "/blocks/common.blocks/form.elements/rich-checkbox-buttons/rich-checkbox-buttons.scss";
+
+// bullet-list
+@import "/blocks/common.blocks/form.elements/bullet-list/bullet-list.scss";
+
+// advantage
+@import "/blocks/common.blocks/form.elements/advantage/advantage.scss";
+
+// comment
+@import "/blocks/common.blocks/form.elements/comment/comment.scss";
+
+// =========> src/blocks/common.blocks/blocks
+@import "/@modules/calendar-ray/styles/calendar-ray.scss";
+
+@import "/blocks/common.blocks/blocks/search-room/search-room.scss";
+@import "src/blocks/common.blocks/blocks/booking-room/booking-room.scss";
+@import "src/blocks/common.blocks/blocks/demonstrate-room/demonstrate-room.scss";
+@import "src/blocks/common.blocks/blocks/login/login.scss";
+@import "src/blocks/common.blocks/blocks/registration/registration.scss";
+
+// Width
+.width-320 {
+  max-width: 320px;
+}
+.width-260 {
+  max-width: 260px;
+}
+.width-240 {
+  max-width: 240px;
+}
+.width-220 {
+  max-width: 220px;
+}
+.width-150 {
+  max-width: 150px;
+}
+.width-90 {
+  max-width: 90px;
+}
+
+.width-full {
+  width: 100%;
+}
+
+// Margin bottom
+.mb-5 {
+  margin-bottom: 5px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-15 {
+  margin-bottom: 15px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+.mb-100 {
+  margin-bottom: 100px;
+}
+
+/* Сброс стиля bootstrap 
+  d-flex, по умолчанию heigh не задан, то есть равен auto, передлываем в 100%.
+  В режиме по умолчанию, данный стиль растягивает блоки на всю высоту.
+*/
+.d-flex-height-full {
+  height: 100%
+}
+
 // Text
 h1 {
   @include QuicksandBold(24px, 30px);

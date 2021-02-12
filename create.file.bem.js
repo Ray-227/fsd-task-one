@@ -20,26 +20,32 @@ const fs = require('fs');
 
 //? __dirname - содержит корневой путь до директории в котором испольняется код.
 //? __filename- содержит корневой путь до файла который исполняет код.
-const NAMES_DIR_AND_FILE = ['test', 'test2', 'test3'];
-const EXTNAMES_FILE = ['pug', 'scss', 'js'];
-const PATH_DIR = path.resolve('src/blocks/common.blocks/form.elements');
+const NAMES_DIR_AND_FILE = ['booking-room'];
+const EXTNAMES_FILE = ['pug', 'scss'];
+const PATH_DIR = path.resolve('src/blocks/common.blocks/blocks');
 
 function createBEM() {
   NAMES_DIR_AND_FILE.map( nameDirAndFile => {
     let pathToDir = path.normalize(`${PATH_DIR}/${nameDirAndFile}`);
     mkdir(pathToDir);
-  
     EXTNAMES_FILE.map( (ext) => {
       let pathToFile = path.normalize(`${pathToDir}/${nameDirAndFile}.${ext}`);
-      createWriteStream(pathToFile, extImport(ext, pathToFile));
+      createWriteStream(pathToFile, '');
     })
   })
 
   function mkdir(pathToDir) {
     // Создаем директорию NAMES_DIR
     fs.mkdir(pathToDir, err => {
-      if(err)
+      let temp = pathToDir.split('\\');
+      temp = temp[temp.length - 1];
+      if(err) {
+        console.log(`Уже существует ${temp}`)
         return;
+      } else {
+        console.log(`Создано ${temp}`)
+      }
+
     });
   }
   

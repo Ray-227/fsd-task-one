@@ -1,0 +1,11 @@
+form(action="", method="post").login
+  .registration-title.mb-20 Войти
+  .mb-10
+    include /blocks/common.blocks/form.elements/email-field/email-field.pug
+  .mb-20
+    include /blocks/common.blocks/form.elements/password-field/password-field.pug
+  .mb-30
+    +proceed-to-checkout("Войти")
+  .registration-login
+    .registration-info Нет аккаунта на Toxin?
+    +input-submit-outline("Создать")

@@ -1,1 +1,17 @@
-.calendar-container
+include /blocks/UIkit.blocks/FormElements/mixinFormElements.pug
+main
+  .container-fluid.mb-100
+    .row.flex-column.flex-lg-row
+      .col-4.justify-content-end.d-flex.flex-column.d-flex-height-full
+        .mb-40
+          include /blocks/common.blocks/blocks/search-room/search-room.pug
+        include /blocks/common.blocks/blocks/registration/registration.pug
+      .col-4.mt-md-4.mt-lg-0.justify-content-center.d-flex.flex-column.d-flex-height-full
+        .mb-40
+          include /blocks/common.blocks/blocks/booking-room/booking-room.pug
+        include /blocks/common.blocks/blocks/login/login.pug
+      .col-4.mt-md-4.mt-lg-0.justify-content-start.d-flex.flex-column.d-flex-height-full
+        .calendar-container.mb-40
+        .mb-40
+          include /blocks/common.blocks/blocks/demonstrate-room/demonstrate-room.pug
+        include /blocks/common.blocks/blocks/demonstrate-room/demonstrate-room.pug

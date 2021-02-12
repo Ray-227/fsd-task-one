@@ -1,4 +1,4 @@
-@mixin CardsBlock($width, $height) {
+@mixin CardsBlock($width, $height: auto) {
   width: $width;
   height: $height;
 

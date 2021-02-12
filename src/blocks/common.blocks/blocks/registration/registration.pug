@@ -1,0 +1,26 @@
+include /blocks/common.blocks/form.elements/info-field/info-field.pug
+include /blocks/common.blocks/form.elements/toggle/toggle.pug
+include /blocks/common.blocks/form.elements/proceed-to-checkout/proceed-to-checkout.pug
+include /blocks/common.blocks/form.elements/input-submit-outline/input-submit-outline.pug
+
+form(action="", method="post").registration
+  .registration-title.mb-20 Регистрация аккаунта
+  .mb-10
+    +info-field("Имя")
+  .mb-10
+    +info-field("Фамилия")
+  .mb-20
+    include /blocks/common.blocks/form.elements/radio-buttons/radio-buttons.pug
+  +FormElemContaner({title: "Дата рождения"}, "width-full mb-20")
+    include /blocks/common.blocks/form.elements/masked-date-field/masked-date-field.pug
+  +FormElemContaner({title: "Данные для входа в сервис"}, "width-full mb-10")
+    include /blocks/common.blocks/form.elements/email-field/email-field.pug
+  .mb-10
+    include /blocks/common.blocks/form.elements/password-field/password-field.pug
+  .mb-20
+    +toggle("Получать спецпредложения")
+  .mb-30
+    +proceed-to-checkout("перейти к оплате")
+  .registration-login
+    .registration-info Уже есть аккаунт на Toxin
+    +input-submit-outline("Войти")

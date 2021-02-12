@@ -35,8 +35,10 @@ main
         //- Date dropdown
         .input-container-date-dropdown.width-320.mb-40
           include /blocks/common.blocks/form.elements/date-dropdown/date-dropdown.pug
-          +input-date-dropdown("width-150")
-          +input-date-dropdown("width-150")
+          +FormElemContaner({title: "date dropdown"}, "width-150 mb-15")
+            +input-date-dropdown("width-150")
+          +FormElemContaner({title: "date dropdown"}, "width-150 mb-15")
+            +input-date-dropdown("width-150")
 
         //- filter date dropdown
         .input-container.width-260.mb-40
