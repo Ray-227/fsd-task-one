@@ -3,12 +3,12 @@ include /blocks/common.blocks/form.elements/dropdown/dropdown.pug
 include /blocks/common.blocks/form.elements/proceed-to-checkout/proceed-to-checkout.pug
 
 form(action="", method="post").booking-room
-  .booking-room-header.mb-20
-    .booking-room-info
-      .booking-room-symbol №
-      .booking-room-number-room 888
-      .booking-room-comfort Люкс
-    .booking-room-price <span class="booking-room-price-bold">9 990₽</span> в сутки
+  .booking-room__header.mb-20
+    .booking-room__info
+      .booking-room__symbol №
+      .booking-room__number-room 888
+      .booking-room__comfort Люкс
+    .booking-room__price <span class="booking-room-price-bold">9 990₽</span> в сутки
   .d-flex.justify-content-between.mb-20
     +FormElemContaner({title: "прибытие"}, "width-150")
       +input-date-dropdown("width-150")
@@ -16,20 +16,20 @@ form(action="", method="post").booking-room
       +input-date-dropdown("width-150")
   +FormElemContaner({title: "Гости"}, "width-320 mb-30")
     +dropdown({options:"adult: взрослые, child: дети, baby: младенцы", text:"Сколько гостей", buttons: "true"})
-  .booking-room-counting.mb-30
-    .booking-room-info-count
-      .booking-room-info-service 9 990₽ х 4 суток
-      .booking-room-info-price 39 960₽
-    .booking-room-info-count
-      .booking-room-info-service Сбор за услуги: скидка 2 179₽
-      .booking-room-info-about-service
-      .booking-room-info-price 0₽
-    .booking-room-info-count
-      .booking-room-info-service Сбор за дополнительные услуги
-      .booking-room-info-about-service
-      .booking-room-info-price 300₽
-  .booking-room-count.mb-20
-    .booking-room-total Итого
-    .booking-room-line
-    .booking-room-total-price 38 081₽
+  .booking-room__counting.mb-30
+    .booking-room__info-count
+      .booking-room__info-service 9 990₽ х 4 суток
+      .booking-room__info-price 39 960₽
+    .booking-room__info-count
+      .booking-room__info-service Сбор за услуги: скидка 2 179₽
+      .booking-room__info-about-service
+      .booking-room__info-price 0₽
+    .booking-room__info-count
+      .booking-room__info-service Сбор за дополнительные услуги
+      .booking-room__info-about-service
+      .booking-room__info-price 300₽
+  .booking-room__count.mb-20
+    .booking-room__total Итого
+    .booking-room__line
+    .booking-room__total-price 38 081₽
   +proceed-to-checkout("забронировать")

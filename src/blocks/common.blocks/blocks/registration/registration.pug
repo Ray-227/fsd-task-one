@@ -4,7 +4,7 @@ include /blocks/common.blocks/form.elements/proceed-to-checkout/proceed-to-check
 include /blocks/common.blocks/form.elements/input-submit-outline/input-submit-outline.pug
 
 form(action="", method="post").registration
-  .registration-title.mb-20 Регистрация аккаунта
+  .registration__title.mb-20 Регистрация аккаунта
   .mb-10
     +info-field("Имя")
   .mb-10
@@ -21,6 +21,6 @@ form(action="", method="post").registration
     +toggle("Получать спецпредложения")
   .mb-30
     +proceed-to-checkout("перейти к оплате")
-  .registration-login
-    .registration-info Уже есть аккаунт на Toxin
+  .registration__login
+    .registration__info Уже есть аккаунт на Toxin
     +input-submit-outline("Войти")

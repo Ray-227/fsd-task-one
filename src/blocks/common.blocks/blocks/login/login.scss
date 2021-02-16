@@ -1,3 +1,19 @@
 .login {
   @include  CardsBlock(380px);
 }
+
+.login__title {
+  color: $Dark100;
+  @include MontserratBold(24px, 30px);
+}
+
+.login__registration {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login__info {
+  @include MontserratNormal(14px, 18px);
+  color: $Black;
+}

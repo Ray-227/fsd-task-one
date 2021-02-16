@@ -38,7 +38,7 @@
 }
 
 .toggle__text {
-  @include MontserratNormal(14px, 18px);
-  color: $Dark50;
+  @include MontserratNormal(14px, 24px);
+  color: $Dark75;
   margin-left: 10px;
 }

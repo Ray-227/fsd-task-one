@@ -155,7 +155,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|svg|ico|gif)$/,
         loader: 'file-loader',
         options: {
-          name: isDev ? 'images/[name].[ext]' : 'images/[name].[hash:8].[ext]',
+          name: isDev ? '[path][name].[ext]' : '[path][name].[hash:8].[ext]',
           publicPath: '../',
         }
       },

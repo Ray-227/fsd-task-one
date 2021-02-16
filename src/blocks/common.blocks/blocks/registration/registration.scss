@@ -2,13 +2,18 @@
   @include  CardsBlock(380px);
 }
 
-.registration-title {
+.registration__title {
   color: $Dark100;
   @include MontserratBold(24px, 30px);
 }
 
-.registration-login {
+.registration__login {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.registration__info {
+  @include MontserratNormal(14px, 18px);
+  color: $Black;
 }

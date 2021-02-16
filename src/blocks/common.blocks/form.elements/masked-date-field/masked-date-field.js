@@ -50,12 +50,11 @@ if ( isElement('.input-date-masked') ) {
       if ( (item.value.length === 2 || item.value.length === 5) && e.code !== 'Backspace' ) {
         item.value += '.';
       }
-  
-      // Данная проверка показательная, чтобы просто была, данную проверку нужно делать только при отправке на сервер.
+      
       if (!maskedDate.is(item) && item.value.length === 10) {
         item.classList.add('input_error');
       }
-  
+      
       if ( maskedDate.is(item) ) {
         maskedDate.setJSON(item);
       } else if (item.value.length === 10) {

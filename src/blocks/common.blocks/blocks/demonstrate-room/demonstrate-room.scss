@@ -1,0 +1,110 @@
+.demonstrate-room {
+  width: 270px;
+  height: 260px;
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+  border-radius: 4px;
+}
+  .demonstrate-room__slider {
+    position: relative;
+    overflow: hidden;
+    height: 154px;
+  }
+
+  .demonstrate-room__slider:hover .demonstrate-room__prev, .demonstrate-room__slider:hover .demonstrate-room__next{
+    opacity: 1;
+  }
+  .demonstrate-room__icons {
+    position: absolute;
+    top: calc(100%/2.8);
+    user-select: none;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $White;
+    opacity: 0;
+    transition: all ease 400ms;
+    cursor: pointer;
+    background: $Dark10;
+    border-radius: 4px 4px 0 0;
+  }
+  .demonstrate-room__icons:hover {
+    background: $Dark25;
+  }
+  .demonstrate-room__prev {
+    transform: rotate(90deg);
+    left: 0;
+  }
+  .demonstrate-room__next {
+    transform: rotate(-90deg);
+    right: 0;
+  }
+  .demonstrate-room__images {
+    height: inherit;
+  }
+  .demonstrate-room__images img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+  .demonstrate-room__info-room {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .demonstrate-room__info-room:nth-of-type(2) {
+    padding-top: 20px;
+    margin-bottom: 10px;
+  }
+  .demonstrate-room__info-room:nth-child(4) {
+    padding-bottom: 20px;
+    margin-top: 10px;
+  }
+
+    .demonstrate-room__SymNumCom {
+      display: flex;
+      align-items: baseline;
+    }
+      .demonstrate-room__symbol {
+        color: $Dark100;
+        @include MontserratBold(14px, 18px);
+      }
+      .demonstrate-room__number-room {
+        color: $Dark100;
+        @include MontserratBold(20px, 22px);
+        margin-left: 5px;
+      }
+      .demonstrate-room__comfort {
+        color: $Purple;
+        text-transform: uppercase;
+        @include MontserratBold(12px, 16px);
+      }
+      .demonstrate-room__price-room {
+        color: $Dark50;
+        @include MontserratNormal(12px, 18px);
+      }
+      .demonstrate-room__price-room_bold {
+        @include MontserratBold(14px, 18px);
+      }
+
+    .demonstrate-room__line {
+      width: 80%;
+      height: 1px;
+      background: $Dark10;
+      margin: 0 auto;
+    }
+
+    .demonstrate-room__rate-room {
+
+    }
+    .demonstrate-room__count-review {
+      color: $Dark50;
+      @include MontserratNormal(14px, 18px);
+    }
+    .demonstrate-room__count-review_bold {
+      @include MontserratBold(14px, 18px);
+    }

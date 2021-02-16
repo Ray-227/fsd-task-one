@@ -8,6 +8,15 @@ function createElements(where, what, content='none', attribute='none', insert='e
     insert - вставить в начало или конец?
   */
 
+  /* 
+  Пример принемаемых значений: 
+    where - object (DOM Element) or 'querySelector=index' => '.class=1' or 'input.class=1'
+    what - 'tag.className' => 'div.class1' or 'input.class1.class2'
+    content - 'your content'
+    attribute - `key=${value}` or 'key=value' or "key='value'" => `name="rate", value=${i}`
+    insert - 'end' or 'start'
+  */
+
   if (typeof where !== 'object') {
     let element = where.split('=')[0];
     let index = where.split('=')[1];
@@ -41,7 +50,6 @@ function createElements(where, what, content='none', attribute='none', insert='e
   if (content !== 'none') {
     tag.innerHTML = content;
   }
-
 
   if (insert === 'start') {
     where.prepend(tag);

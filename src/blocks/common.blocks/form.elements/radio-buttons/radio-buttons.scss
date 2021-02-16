@@ -25,6 +25,7 @@
   background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='12' height='12' rx='6' fill='url(%23paint0_linear)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='6' y1='0' x2='6' y2='12' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23BC9CFF'/%3E%3Cstop offset='1' stop-color='%238BA4F9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
   background-position: center;
+  color: $Dark75;
 }
 
 .radio__input:focus + .radio__point, .radio__input:hover + .radio__point{
@@ -41,7 +42,7 @@
 }
 
 .radio__text {
-  @include MontserratNormal(14px, 18px);
+  @include MontserratNormal(14px, 24px);
   color: $Dark50;
   margin-left: 10px;
 }
