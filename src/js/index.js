@@ -13,6 +13,8 @@ if ( location.pathname.indexOf('/Cards') !== -1 ) {
   require('@/blocks/common.blocks/form.elements/date-dropdown/date-dropdown.js');
 
   require('@/blocks/common.blocks/form.elements/rate-button/rate-button.js');
+
+  require('@/blocks/common.blocks/blocks/demonstrate-room/demonstrate-room.js');
 }
 
 if ( location.pathname.indexOf('/FormElements') !== -1 ){

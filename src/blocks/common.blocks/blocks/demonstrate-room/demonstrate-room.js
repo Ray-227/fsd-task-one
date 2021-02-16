@@ -1,0 +1,1 @@
+require('@/blocks/common.blocks/blocks/demonstrate-room/demonstrate-room-slideshow.js');

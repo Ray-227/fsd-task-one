@@ -1,14 +1,36 @@
 .demonstrate-room {
   width: 270px;
   height: 260px;
-  background: #FFFFFF;
-  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+  background: $White;
+  box-shadow: 0px 10px 20px $Dark5;
   border-radius: 4px;
 }
   .demonstrate-room__slider {
     position: relative;
     overflow: hidden;
     height: 154px;
+  }
+
+  .demonstrate-room__elipses {
+    width: calc(8px * 4 + 12px);
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 8%;
+    right: 6%;
+    z-index: 2;
+  }
+
+  .demonstrate-room__elipse {
+    width: 8px;
+    height: 8px;
+    border: 1px solid $White;
+    box-shadow: 0px 5px 5px $Dark5;
+    border-radius: 50%;
+  }
+
+  .demonstrate-room__elipse_active {
+    background: $White;
   }
 
   .demonstrate-room__slider:hover .demonstrate-room__prev, .demonstrate-room__slider:hover .demonstrate-room__next{
@@ -29,6 +51,7 @@
     cursor: pointer;
     background: $Dark10;
     border-radius: 4px 4px 0 0;
+    z-index: 2;
   }
   .demonstrate-room__icons:hover {
     background: $Dark25;
@@ -43,13 +66,20 @@
   }
   .demonstrate-room__images {
     height: inherit;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    left: 0;
+    transition: left ease 500ms;
   }
   .demonstrate-room__images img {
     object-fit: cover;
     object-position: center;
     width: 100%;
     height: 100%;
+    flex-shrink: 0;
   }
+
   .demonstrate-room__info-room {
     display: flex;
     justify-content: space-between;

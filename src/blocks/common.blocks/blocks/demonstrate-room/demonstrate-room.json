@@ -1,0 +1,17 @@
+{
+  "room":{
+    "1": {
+      "images": {
+        "1": "/images/demonstrate-room__images/demonstrate-room-default.png",
+        "2": "/images/demonstrate-room__images/demonstrate-room-default.png",
+        "3": "/images/demonstrate-room__images/demonstrate-room-default.png",
+        "4": "/images/demonstrate-room__images/demonstrate-room-default.png"
+      },
+      "number": 888,
+      "comfort": "Люкс",
+      "price": 9900,
+      "star": 3,
+      "review": 140
+    }
+  }
+}
