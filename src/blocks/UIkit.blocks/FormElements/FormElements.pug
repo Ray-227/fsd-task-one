@@ -17,6 +17,7 @@ main
             h3.input-container__title Text Field
             p.input-container__info Hover / Focus
           include /blocks/common.blocks/form.elements/text-field/text-field.pug
+          +input-text('This is pretty awesome', 'Enter text')
 
         //- DROPDOWN
         //- У блока .dropdown, есть атрибут info (генерируется js), он обозначает какие значение и в каком кол-во выбрал пользователь.
@@ -69,7 +70,7 @@ main
           label.input-container__label
             h3.input-container__title.mb-15 Toggle
           include /blocks/common.blocks/form.elements/toggle/toggle.pug
-          +toggle("mb-20")
+          +toggle("Получать спецпредложения")
           label.toggle__label
             input(type="checkbox", name="offers", checked).toggle__input
             .toggle__point
@@ -96,14 +97,8 @@ main
             h3.input-container__title.mb-15 Rate button
           .d-flex.justify-content-between
             //- Rate block
-            include /blocks/common.blocks/form.elements/rate-button/rate-button.pug
-            //- Rate Demo (don't use)
-            fieldset.rate__fieldset
-              input(type="radio", name="rate-demo", value="1" aria-label="Ужасно").rate__input.rate__star
-              input(type="radio", name="rate-demo", value="2" aria-label="Плохо").rate__input.rate__star
-              input(type="radio", name="rate-demo", value="3" aria-label="Средне").rate__input.rate__star
-              input(type="radio", name="rate-demo", value="4" aria-label="Хорошо" checked).rate__input.rate__star
-              input(type="radio", name="rate-demo", value="5" aria-label="Отлично").rate__input.rate__star
+            .rate(star="2")
+            .rate(star="4")
       .col-4.mt-md-4.mt-lg-0
         //- Range Slider
         .input-container.width-260.mb-40
@@ -118,15 +113,18 @@ main
             h3.input-container__title.mb-15 Buttons
           .d-flex.justify-content-between.mb-30
             include /blocks/common.blocks/form.elements/input-submit-fill/input-submit-fill.pug
+            +input-submit-fill("Click Me")
             input(type="submit", value="Click Me").input-submit-fill.input-submit-fill_hover
           .d-flex.justify-content-between.mb-30
             include /blocks/common.blocks/form.elements/input-submit-outline/input-submit-outline.pug
+            +input-submit-outline("Click Me")
             .input-submit-outline.input-submit-outline_hover
               input(type="submit", value="Click Me").input-submit-outline__input
           .d-flex.mb-30
             include /blocks/common.blocks/form.elements/input-submit-text/input-submit-text.pug
             input(type="submit", value="Click Me").input-submit-text.input-submit-text_hover.ml-4
           include /blocks/common.blocks/form.elements/proceed-to-checkout/proceed-to-checkout.pug
+        +proceed-to-checkout("Перейти к оплате", "mb-40")
 
         //- pagination
         .input-container.width-240.mb-40

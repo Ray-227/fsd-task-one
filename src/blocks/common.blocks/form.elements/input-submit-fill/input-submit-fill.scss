@@ -9,11 +9,11 @@
   @include MontserratBold(12px, 14px);
   text-transform: uppercase;
   color: $White;
-
-  width: 100px;
   height: 45px;
   border-radius: 22px;
   cursor: pointer;
+
+  padding: 10px 20px;
 
   @include PurpleGradient();
 

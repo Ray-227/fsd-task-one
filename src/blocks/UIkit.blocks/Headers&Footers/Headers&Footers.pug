@@ -1,0 +1,13 @@
+include /blocks/common.blocks/blocks/header-toxin/header-toxin.pug
+
+main
+  .container-fluid
+    .row
+      .col-12.p-0.mb-40
+        +header-toxin()
+      .col-12.p-0
+        +header-toxin('true')
+      .col-12.p-0
+        include /blocks/common.blocks/blocks/footer-toxin/footer-toxin.pug
+      .col-6.p-0
+        //- include /blocks/common.blocks/blocks/footer-toxin/footer-toxin.pug

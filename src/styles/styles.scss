@@ -3,10 +3,12 @@
 @import "/fonts/mixinFonts.scss";
 @import "/fonts/MaterialIcons/material-icons.scss";
 
+// =========> src/blocks/UIkit.blocks
 @import "/blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.scss";
 @import "/blocks/UIkit.blocks/Cards/Cards.scss";
 @import "/blocks/UIkit.blocks/Colors&Type/Colors&Type.scss";
 @import "/blocks/UIkit.blocks/FormElements/FormElements.scss";
+@import "/blocks/UIkit.blocks/Headers&Footers/Headers&Footers.scss";
 
 // =========> src/blocks/common.blocks/form.elements
 // email field
@@ -81,14 +83,17 @@
 // comment
 @import "/blocks/common.blocks/form.elements/comment/comment.scss";
 
-// =========> src/blocks/common.blocks/blocks
+// =========> src/@modules/calendar-ray
 @import "/@modules/calendar-ray/styles/calendar-ray.scss";
 
+// =========> src/blocks/common.blocks/blocks
 @import "/blocks/common.blocks/blocks/search-room/search-room.scss";
 @import "src/blocks/common.blocks/blocks/booking-room/booking-room.scss";
 @import "src/blocks/common.blocks/blocks/demonstrate-room/demonstrate-room.scss";
 @import "src/blocks/common.blocks/blocks/login/login.scss";
 @import "src/blocks/common.blocks/blocks/registration/registration.scss";
+@import "src/blocks/common.blocks/blocks/header-toxin/header-toxin.scss";
+@import "src/blocks/common.blocks/blocks/footer-toxin/footer-toxin.scss";
 
 // Width
 .width-320 {
@@ -182,4 +187,8 @@ h3 {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+}
+
+a {
+  text-decoration: none;
 }

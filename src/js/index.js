@@ -15,6 +15,10 @@ if ( location.pathname.indexOf('/Cards') !== -1 ) {
   require('@/blocks/common.blocks/form.elements/rate-button/rate-button.js');
 
   require('@/blocks/common.blocks/blocks/demonstrate-room/demonstrate-room.js');
+
+  require('@/blocks/common.blocks/blocks/demonstrate-room/demonstrate-room.js');
+
+  require('@/blocks/UIkit.blocks/Cards/Cards.js');
 }
 
 if ( location.pathname.indexOf('/FormElements') !== -1 ){
@@ -37,4 +41,12 @@ if ( location.pathname.indexOf('/FormElements') !== -1 ){
   require('@/blocks/common.blocks/form.elements/expandable-checkbox-list/expandable-checkbox-list.js');
 
   require('@/blocks/common.blocks/form.elements/like-button/like-button.js');
+
+  require('@/blocks/common.blocks/form.elements/rate-button/rate-button.js');
 }
+
+if ( location.pathname.indexOf('/Headers&Footers') !== -1 ){ 
+  require('@/blocks/common.blocks/blocks/header-toxin/header-toxin.js');
+  require('@/blocks/UIkit.blocks/Headers&Footers/Headers&Footers.js');
+}
+

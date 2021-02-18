@@ -1,0 +1,29 @@
+include /blocks/common.blocks/form.elements/input-submit-fill/input-submit-fill.pug
+include /blocks/common.blocks/form.elements/input-submit-outline/input-submit-outline.pug
+
+mixin header-toxin(login='false')
+  .header-toxin
+    .header-toxin__logo
+      img(src="/images/logo.svg", alt="Toxin")
+    .header-toxin__other
+      nav.header-toxin__menu
+        ul.header-toxin__menu-container
+          li.header-toxin__menu-item
+            a.header-toxin__menu-link(href="#") О нас
+          li.header-toxin__menu-item
+            .header-toxin__menu-dropdown Услуги
+            .header-toxin__menu-icon.material-icons expand_more
+          li.header-toxin__menu-item
+            a.header-toxin__menu-link(href="#") Вакансии
+          li.header-toxin__menu-item
+            a.header-toxin__menu-link(href="#") Новости
+          li.header-toxin__menu-item
+            .header-toxin__menu-dropdown Соглашения
+            .header-toxin__menu-icon.material-icons expand_more
+      .header-toxin__authorization
+        if login === 'true'
+          .header-toxin__authorized Юлий Цезарь
+        else
+          .header-toxin__not-authorized
+            +input-submit-outline('Войти', 'header-toxin__login')
+            +input-submit-fill('Зарегистрироваться', 'header-toxin__registration')

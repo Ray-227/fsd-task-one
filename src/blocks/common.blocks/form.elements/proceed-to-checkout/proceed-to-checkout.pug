@@ -1,4 +1,4 @@
-mixin proceed-to-checkout(value)
-  label.proceed-to-checkout
+mixin proceed-to-checkout(value, uclass)
+  label.proceed-to-checkout(class=uclass)
     input(type="submit", value=value).proceed-to-checkout__input
     span.material-icons.proceed-to-checkout__icon arrow_forward
