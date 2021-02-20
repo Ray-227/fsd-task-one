@@ -1,4 +1,5 @@
 extends ./pug/extends/base.pug
+include /blocks/common.blocks/blocks/header-toxin/header-toxin.pug
 
 block headVar
   - var title = "Главная"
@@ -6,7 +7,9 @@ block headCss
   //- Here write link files css
 
 block body
-  include /blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.pug
+  //- include /blocks/UIkit.blocks/HeaderUIkit/HeaderUIkit.pug
+  +header-toxin(login='false')
+
 
 block scripts
   //- Here write script files js

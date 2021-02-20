@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch --hide-modules",
@@ -15,7 +15,6 @@
     "last 3 version"
   ],
   "author": "Ray <ray-227@ya.ru>",
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",

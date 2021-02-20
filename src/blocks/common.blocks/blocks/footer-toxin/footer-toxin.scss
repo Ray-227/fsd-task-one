@@ -1,0 +1,119 @@
+.footer-toxin {
+  background: $White;
+  box-shadow: 0px 10px 20px $Dark5;
+  padding: 100px 10% 0 10%;
+  position: relative;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    padding: 120px 10%;
+  }
+}
+
+
+  .footer-toxin__header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 100px;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+      margin: 0;
+      justify-content: center;
+    }
+  }
+
+
+    .footer-toxin__info {
+      width: 260px;
+      @media (max-width: 768px) {
+        display: flex;
+        justify-content: center;
+      }
+      
+    }
+
+    .footer-toxin__text {
+      color: $Dark75;
+      @include MontserratNormal(14px, 24px);
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-toxin__navigation {
+        display: none;
+      }
+    }
+  
+      .footer-toxin__nav-title {
+        color: $Dark100;
+        @include MontserratBold(12px, 16px);
+        text-transform: uppercase;
+      }
+        .footer-toxin__ul-wrapper {
+          margin: 0;
+          padding: 0;
+        }
+          .footer-toxin__li-item {
+            list-style-type: none;
+            margin-top: 20px;
+          }
+            .footer-toxin__a-link {
+              @include MontserratNormal(14px, 16px);
+              color: $Dark50;
+            }
+
+
+  .footer-toxin__line {
+    width: 100%;
+    height: 1px;
+    background: $Dark10;
+    position: absolute;
+    left: 0;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+
+  .footer-toxin__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+    .footer-toxin__content {
+      @include MontserratNormal(14px, 16px);
+      color: $Dark75;
+      @media (max-width: 768px) {
+        margin-bottom: 25px;
+      }
+    }
+    .footer-toxin__img {
+      display: flex;
+      align-items: center;
+    }
+      .footer-toxin__img-link {
+        @include MontserratNormal(14px, 16px);
+        color: $Dark50;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        margin-right: 20px;
+      }
+
+      .footer-toxin__img-link:last-child {
+        margin-right: 0px;
+      }
+
+      .footer-toxin__img-link img {
+        width: 24px;
+        height: 24px;
+      }

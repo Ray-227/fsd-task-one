@@ -1,0 +1,11 @@
+extends /pug/extends/base.pug
+include /blocks/common.blocks/blocks/header-toxin/header-toxin.pug
+
+block headVar
+  - var title = "Главная"
+
+block headCss
+
+block body
+  +header-toxin(login='false')
+block scripts

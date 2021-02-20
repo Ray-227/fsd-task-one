@@ -1,13 +1,14 @@
 include /blocks/common.blocks/blocks/header-toxin/header-toxin.pug
 
 main
-  .container-fluid
+  .container-fluid.mb-100
     .row
       .col-12.p-0.mb-40
         +header-toxin()
-      .col-12.p-0
+      .col-12.p-0.mb-40
         +header-toxin('true')
-      .col-12.p-0
+      .col-12.p-0.mb-40
         include /blocks/common.blocks/blocks/footer-toxin/footer-toxin.pug
-      .col-6.p-0
-        //- include /blocks/common.blocks/blocks/footer-toxin/footer-toxin.pug
+      //- Footer адаптирован, но меняется, только от размера окна браузера или экрана.
+      //- .col-6.p-0
+      //-   include /blocks/common.blocks/blocks/footer-toxin/footer-toxin.pug

@@ -16,8 +16,11 @@ if (isDev) {
   currentMode = 'production';
 }
 
-const PAGES_DIR = path.resolve(__dirname, 'src/pug/pages/UiKit');
-const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'));
+const PAGES_DIR_UIkit = path.resolve(__dirname, 'src/pug/pages/UiKit');
+const PAGES_UIkit = fs.readdirSync(PAGES_DIR_UIkit).filter(fileName => fileName.endsWith('.pug'));
+
+const PAGES_DIR_Landing = path.resolve(__dirname, 'src/pug/pages/');
+const PAGES_Landing = fs.readdirSync(PAGES_DIR_Landing).filter(fileName => fileName.endsWith('.pug'));
 
 const optimization = () => {
   const config = {
@@ -95,12 +98,18 @@ const plugins = () => {
         removeComments: isProd
       }
     }),
-    ...PAGES.map(page => new HTMLWebpackPlugin({
-          template: `${PAGES_DIR}/${page}`,
-          filename: `pages/${page.replace(/\.pug/,'.html')}`,
-          inject: true,
-          minify: isProd
-        })),
+    PAGES_UIkit.map( page => new HTMLWebpackPlugin({
+      template: `${PAGES_DIR_UIkit}/${page}`,
+      filename: `pages/${page.replace(/\.pug/,'.html')}`,
+      inject: true,
+      minify: isProd
+    })),
+    PAGES_Landing.map( page => new HTMLWebpackPlugin({
+      template: `${PAGES_DIR_Landing}/${page}`,
+      filename: `pages/${page.replace(/\.pug/,'.html')}`,
+      inject: true,
+      minify: isProd
+    })),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: fileName('style', 'css'),

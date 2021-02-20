@@ -1,29 +1,31 @@
-.header {
-  width: 100%;
-  height: auto;
-  margin-bottom: 32px;
+.menu {
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  width: 10%;
 }
 
-.logo {
-  background-image: url("/images/gray-logo.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 48px;
-  height: 48px;
-  margin: 30px;
+.menu__titile {
+  @include MontserratNormal(14px, 18px);
+  color: $Dark50;
 }
 
-.menu_container {
+.menu:hover .menu__container{
+  height: 140px;
+}
+
+.menu__container {
   display: flex;
-  flex-wrap: wrap;
   padding: 0;
   margin: 0;
+  flex-direction: column;
+  height: 0px;
+  transition: height ease 1.5s;
 }
 
 .menu__item {
   list-style-type: none;
-  margin-right: 15px;
-  margin-left: 15px;
+  margin-top: 8px;
 }
 
 .menu__link {
